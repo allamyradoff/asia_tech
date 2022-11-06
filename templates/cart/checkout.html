@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<main>
+    {% for i in checkout_banner %}
+    <div class="page-banner-area page-banner-height-2" data-background="{{i.image.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h4 class="breadcrumb-title">Checkout</h4>
+                        <div class="breadcrumb-two">
+                            <nav>
+                                <nav class="breadcrumb-trail breadcrumbs">
+                                    <ul class="breadcrumb-menu">
+                                        <li class="breadcrumb-trail">
+                                            <a href="index.html"><span>Home</span></a>
+                                        </li>
+                                        <li class="trail-item">
+                                            <span>Checkout</span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+    <section class="checkout-area pb-85">
+        <div class="container">
+            <form action="{% url 'place_order' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 2%;">
+                        <div class="checkbox-form">
+                            <h3>Платежные реквизиты</h3>
+                            <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Имя<span class="required">*</span></label>
+                                        <input type="text" name="first_name" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Фамилия<span class="required">*</span></label>
+                                        <input type="text" name="last_name" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Email</label>
+                                        <input type="email" name="email" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Номер телефона <span class="required">*</span></label>
+                                        <input type="text" name="phone" placeholder="+993 63 234589" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Адресная строка <span class="required">*</span></label>
+                                        <input type="text" name="address_line_1" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Адресная строка(запасная)<span class="required">*</span></label>
+                                        <input type="text" name="address_line_2" placeholder="">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="checkout-form-list">
+                                        <label>Гсударство <span class="required">*</span></label>
+                                        <input type="text" name="state" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="checkout-form-list">
+                                        <label>Страна <span class="required">*</span></label>
+                                        <input type="text" name="country" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="checkout-form-list">
+                                        <label>Город <span class="required">*</span></label>
+                                        <input type="text" name="city" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="order-button-payment mt-20">
+                                    <button type="submit" class="tp-btn-h1">Разместить заказ</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+</main>
+
+
+<!-- <section class="section-content padding-y bg">
+    <div class="container">
+
+
+        <div class="row">
+            <aside class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="cart-title mb-4">
+                            Billing Address
+                        </h4>
+                        <form action="{% url 'place_order' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">First name</label>
+                                    <input type="text" name="first_name" id="" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Last name</label>
+                                    <input type="text" name="last_name" id="" class="form-control" required>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" id="" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Phone Number</label>
+                                    <input type="text" name="phone" id="" class="form-control" required>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">Address Line 1</label>
+                                    <input type="text" name="address_line_1" id="" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Address Line 2</label>
+                                    <input type="text" name="address_line_2" id="" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="">City</label>
+                                    <input type="text" name="city" id="" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">State</label>
+                                    <input type="text" name="state" id="" class="form-control" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="">Country</label>
+                                    <input type="text" name="country" id="" class="form-control" required>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <label for="">Order Note</label>
+                                <textarea name="order_note" id="" rows="2" class="form-control"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </aside>
+            <aside class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Product</th>
+                                    <th scope="col" width="120">Quantity</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" class="text-right" width="200"> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in cart_items %}
+                                <tr>
+                                    <td>
+                                        <figure class="itemside align-items-center">
+                                            <div class="aside"><img src="{{i.product.image.url}}" class="img-sm"></div>
+                                            <figcaption class="info">
+                                                <a href="#" class="title text-dark">{{i.product.name}}</a>
+                                                <p class="text-muted small">
+                                                    {% if i.variations.all %}
+                                                    {% for item in i.variations.all %}
+                                                    {{ item.variation_category | capfirst }} : {{ item.variation_value |
+                                                    capfirst}}
+                                                    <br>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </p>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <label for="">{{i.quantity}}</label>
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">${{i.sub_total}}</var>
+                                            <small class="text-muted"> ${{i.product.price}} </small>
+                                        </div> 
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{% url 'delete_cart' i.product.id i.id %}" class="btn btn-danger">
+                                            Remove</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                        <button type="submit" name="submit" class="btn btn-primary btn-block"> Place order </button>
+                        <a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
+                        </form>
+                    </div>
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+</section> -->
+
+
+
+
+{% endblock %}

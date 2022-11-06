@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+
+
+
+<main>
+    
+
+    <!-- account-area-start -->
+    <div class="account-area mt-70 mb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" style="float:none;margin:auto;">
+                    <div class="basic-login mb-50">
+                        {% include 'include/alert.html' %}
+                        <h5>Войти</h5>
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+                            <label for="name">Username or email address  <span>*</span></label>
+                            <input  type="text" placeholder="Enter Username" name="email">
+                            <label for="pass">Password <span>*</span></label>
+                            <input  type="password" placeholder="Enter password..." name="password">
+                            
+                            {% comment %} <a href="login.html" class="tp-in-btn w-100">log in</a> {% endcomment %}
+                            <button type="submit" class="tp-in-btn w-100"> Войти </button>
+                        </form>
+                        <a href="{% url 'register' %}" style="margin-top:2%" class="tp-in-btn w-100"> Регистрация </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+</main>
+{% endblock %}

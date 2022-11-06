@@ -1,0 +1,938 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<main>
+
+	<!-- slider-area-start -->
+	<div class="slider-area light-bg-s pt-60">
+		<div class="container 0">
+			<div class="row">
+				<div class="col-xl-6">
+					<div class="swiper-container slider__active pb-30">
+						<div class="slider-wrapper swiper-wrapper">
+							{% for i in slider %}
+							<div class="single-slider swiper-slide b-radius-2 slider-height-3 d-flex align-items-center"
+								data-background="{{i.slider_image_1.url}}">
+								<div class="slider-content slider-content-2">
+									<div class="slider-top-btn mb-20" data-animation="fadeInLeft" data-delay="1.5s"
+										style="animation-delay: 1.5s;">
+										<a href="shop.html" class="st-btn b-radius">{{i.hot_detail}}</a>
+									</div>
+									<h2 data-animation="fadeInLeft" data-delay="1.7s" class="pt-15 slider-title pb-5">
+										{{i.slider_title}}</h2>
+									<p class="pr-20 slider_text" data-animation="fadeInLeft" data-delay="1.9s">{{i.slider_mini_title}}</p>
+									
+								</div>
+							</div>
+							{% endfor %}
+							
+							
+							<div class="main-slider-paginations"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6">
+					<div class="row">
+						{% for i in mini_slider %}
+						<div class="col-xl-6 col-lg-6">
+							<div class="row">
+								<div class="col-xl-12 col-lg-12 col-sm-6">
+									<div class="banner__item p-relative w-img mb-30">
+										<div class="banner__img banner__img-2 b-radius-2">
+											<a ><img src="{{i.lilte_banner_1.url}}"
+													alt=""></a>
+										</div>
+										<div class="banner__content">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-12 col-lg-12 col-sm-6">
+									<div class="banner__item p-relative w-img mb-30">
+										<div class="banner__img banner__img-2 b-radius-2">
+											<a ><img src="{{i.lilte_banner_2.url}}"
+													alt=""></a>
+										</div>
+										<div class="banner__content">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6">
+							<div class="banner__item p-relative w-img mb-30">
+								<div class="banner__img banner__img-3  b-radius-2">
+									<a ><img src="{{i.big_banner_2.url}}"
+											alt=""></a>
+								</div>
+								<div class="banner__content banner__content-3">
+									<div class="banner-df-btn mb-15">
+										<a class="st-btn b-radius">{{i.slider_title}}</a>
+									</div>
+									<h6 class="df-title"><a >{{i.slider_mini_title}}</a></h6>
+									
+								</div>
+							</div>
+							
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- slider-area-end -->
+
+	<!-- top-dels-start -->
+	<section class="top-dels light-bg-s pt-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="section__head d-flex justify-content-between mb-30">
+						<div class="section__title section__title-2">
+							<h5 class="st-titile-d st-titile-d-2">Лучшие предложения дня</h5>
+						</div>
+						<div class="offer-time">
+							<span class="offer-title d-none d-sm-block">Торопиться! Предложение заканчивается через:</span>
+							<div class="countdown">
+								<div class="countdown-inner b-radius-2" data-countdown=""
+									data-date="Jan 26 2023 20:20:22">
+									<ul class="text-center">
+										<li><span data-days="30">30</span> Дни</li>
+										<li><span data-hours="9">9</span> Часы</li>
+										<li><span data-minutes="37">37</span> Мин</li>
+										<li><span data-seconds="38">38</span> сек</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row row-cols-xxl-5 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+				{% for i in product_sale %}
+				<div class="col">
+					<div class="product__item product__item-2 b-radius-2 mb-20">
+						<div class="product__thumb fix">
+							<div class="product-image w-img">
+								<a href="{% url 'product_detail' i.id  i.category.id %}">
+									<img src="{{i.image.url}}" alt="product">
+								</a>
+							</div>
+							<div class="product__offer">
+								<span class="discount" style="background-color: red;">-{{i.sale_percent}}%</span>
+							</div>
+							<div class="product-action product-action-2">
+								<a href="#" class="icon-box icon-box-1" data-bs-toggle="modal"
+									data-bs-target="#productModalId">
+									<i class="fal fa-eye"></i>
+									<i class="fal fa-eye"></i>
+								</a>
+								
+								
+							</div>
+						</div>
+						<div class="product__content product__content-3">
+							<h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
+							
+							<div class="price mb-20">
+								<span>${{i.price}}</span>
+							</div>
+							
+							<div class="progress-rate">
+								<span>Осталось:{{i.stock}}</span>
+							</div>
+						</div>
+						<div class="product__add-cart text-center">
+							<a href="{% url 'add_cart' i.id %}"
+								class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+								Add to Cart
+							</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- top-dels-end -->
+
+	<!-- featured-start -->
+	<section class="featured light-bg-s pt-50">
+		<div class="container 0">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="section__head d-flex justify-content-between mb-30">
+						<div class="section__title section__title-2">
+							<h5 class="st-titile">Самые популярные товары</h5>
+						</div>
+						<div class="button-wrap button-wrap-2">
+							<a href="{% url 'store' %}">Посмотреть весь продукт <i class="fal fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-6 col-lg-12">
+					<div class="single-features-item single-features-item-d b-radius-2 mb-20">
+						<div class="row  g-0 align-items-center">
+							<div class="col-md-6">
+								<div class="features-thum">
+									<div class="features-product-image w-img">
+										<a href="{% url 'product_detail' top_product.product.id  top_product.product.category.id %}"><img src="{{top_product.product.image.url}}"
+												alt=""></a>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="product__content product__content-d product__content-d-2">
+									<h6>{{top_product.product.name}}</h6>
+									<div class="rating mb-5">
+										
+										<span>({{top_product.product.stock}}штук осталось)</span>
+									</div>
+									<div class="price d-price mb-10">
+										<span>${{top_product.product.sale_price}} <del>${{top_product.product.price}}</del></span>
+									</div>
+									<div class="features-des mb-25">
+										<ul>
+											{% if top_product.mini_desc_1 %}
+											<li><a href="{% url 'product_detail' top_product.product.id  top_product.product.category.id %}"><i class="fas fa-circle"></i> {{top_product.mini_desc_1 }}</a></li>
+											{% endif %}
+											{% if top_product.mini_desc_2 %}
+											<li><a href="{% url 'product_detail' top_product.product.id  top_product.product.category.id %}"><i class="fas fa-circle"></i> {{top_product.mini_desc_1 }}</a></li>
+											{% endif %}
+											{% if top_product.mini_desc_3 %}
+											<li><a href="{% url 'product_detail' top_product.product.id  top_product.product.category.id %}"><i class="fas fa-circle"></i> {{top_product.mini_desc_3 }}</a></li>
+											{% endif %}
+											{% if top_product.mini_desc_4 %}
+											<li><a href="{% url 'product_detail' top_product.product.id  top_product.product.category.id %}"><i class="fas fa-circle"></i> {{top_product.mini_desc_4 }}</a></li>
+											{% endif %}
+										</ul>
+									</div>
+									<div class="cart-option">
+										<a href="{% url 'add_cart' top_product.product.id %}" class="cart-btn-4 w-100 mr-10">Add to Cart</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-12">
+					<div class="row">
+						{% for i in top_mini_product %}
+							<div class="col-md-6">
+								<div class="single-features-item b-radius-2 mb-20">
+									<div class="row  g-0 align-items-center">
+										<div class="col-6">
+											<div class="features-thum">
+												<div class="features-product-image w-img">
+													<a href="{% url 'product_detail' i.product.id  i.product.category.id %}"><img
+															src="{{i.product.image.url}}" alt=""></a>
+												</div>
+												{% if i.sale_percent%}
+												<div class="product__offer">
+													<span class="discount">-{{i.sale_percent}}%</span>
+												</div>
+												{% endif %}
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="product__content product__content-d product__content-d-2">
+												<h6><a href="product-details.html">{{i.product.name}}</a></h6>
+												<div class="rating mb-5">
+													
+													<span>({{i.product.stock}}штук осталось)</span>
+												</div>
+												<div class="price d-price">
+													
+													<span>{% if i.product.sale_price %}${{i.product.sale_price}} <del>{% endif %}${{i.product.price}}</del></span>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						
+					</div>
+					<div class="row">
+						{% for i in top_mini_product_2 %}
+							<div class="col-md-6">
+								<div class="single-features-item b-radius-2 mb-20">
+									<div class="row  g-0 align-items-center">
+										<div class="col-6">
+											<div class="features-thum">
+												<div class="features-product-image w-img">
+													<a href="{% url 'product_detail' i.product.id  i.product.category.id %}"><img
+															src="{{i.product.image.url}}" alt=""></a>
+												</div>
+												{% if i.product.sale_percent%}
+												<div class="product__offer">
+													<span class="discount">-{{i.product.sale_percent}}%</span>
+												</div>
+												{% endif %}
+											</div>
+										</div>
+										<div class="col-6">
+											<div class="product__content product__content-d product__content-d-2">
+												<h6><a href="product-details.html">{{i.product.name}}</a></h6>
+												<div class="rating mb-5">
+													
+													<span>({{i.product.stock}}штук осталось)</span>
+												</div>
+												<div class="price d-price">
+													
+													<span>{% if i.product.sale_price %}${{i.product.sale_price}} <del>{% endif %}${{i.product.price}}</del></span>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- featured-end -->
+
+	<!-- banner__area-start -->
+	<section class="banner__area light-bg-s pb-10">
+		<div class="container">
+			{% for i in vip_ad %}
+			<div class="row">
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="banner__item p-relative w-img mb-30">
+						<div class="banner__img b-radius-2">
+							<a href="product-details.html"><img src="{{i.image_1.url}}" alt=""></a>
+						</div>
+						<div class="banner__content">
+							<h6><a href="product-details.html">{{i.title_1}}</a></h6>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="banner__item p-relative mb-30 w-img">
+						<div class="banner__img b-radius-2">
+							<a href="product-details.html"><img src="{{i.image_2.url}}" alt=""></a>
+						</div>
+						<div class="banner__content">
+							<h6><a href="product-details.html">{{i.title_2}}</a></h6>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-4 col-md-6">
+					<div class="banner__item p-relative mb-30 w-img">
+						<div class="banner__img b-radius-2">
+							<a href="product-details.html"><img src="{{i.image_3.url}}" alt=""></a>
+						</div>
+						<div class="banner__content">
+							<h6><a href="product-details.html">{{i.title_3}}</a></h6>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+	<!-- banner__area-end -->
+
+	<section class="trending-product-area light-bg-s pt-20 pb-15">
+		<div class="container 0">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="section__head d-flex justify-content-between mb-30">
+						<div class="section__title section__title-2">
+							<h5 class="st-titile">Последние добавленные продукты</h5>
+						</div>
+						<div class="button-wrap button-wrap-2">
+							<a href="{% url 'store' %}">Посмотреть все продукты <i class="fal fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				{% for i in last_product %}
+				<div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-2">
+					<div class="product__item product__item-2 b-radius-2 mb-20">
+						<div class="product__thumb fix">
+							<div class="product-image w-img">
+								<a href="{% url 'product_detail' i.id  i.category.id %}">
+									<img src="{{i.image.url}}" alt="product">
+								</a>
+							</div>
+							{% if i.sale_percent%}
+								<div class="product__offer">
+									<span class="discount">-{{i.sale_percent}}%</span>
+								</div>
+							{% endif %}
+							
+						</div>
+						<div class="product__content product__content-2">
+							<h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
+							<div class="rating mb-5 mt-10">
+								
+								<span>({{top_product.product.stock}}штук осталось)</span>
+							</div>
+							<div class="price">
+								<span >{% if i.sale_price %}${{i.sale_price}} <del>{% endif %}${{i.price}}</del></span>
+							</div>
+						</div>
+						<div class="product__add-cart text-center">
+							<a href="{% url 'add_cart' i.id %}"
+								class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+								Add to Cart
+						</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<!-- <div class="doubale-product-area light-bg-s pt-20 pb-40">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="section__head d-flex justify-content-between mb-30">
+						<div class="section__title section__title-2">
+							<h5 class="st-titile">Последние добавленные продукты</h5>
+						</div>
+						<div class="button-wrap button-wrap-2">
+							<a href="{% url 'store' %}">Посмотреть все продукты <i class="fal fa-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-6">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="section__head d-flex justify-content-between mb-30">
+								<div class="section__title section__title-2">
+									<h5 class="st-titile">Hot Trending Products</h5>
+								</div>
+								<div class="button-wrap button-wrap-2">
+									<a href="product.html">See All <i class="fal fa-chevron-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-2.jpg' %}" alt=""></a>
+											</div>
+											<div class="product__offer">
+												<span class="discount">-5%</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">G951s Pink Stereo Gaming Headset</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price d-price">
+												<span>$210.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-2.jpg' %}" alt=""></a>
+											</div>
+											<div class="product__offer">
+												<span class="discount">-25%</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">Solo3 Wireless On-Ear Headphones</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$160.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-2.jpg' %}" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">Men’s Short-Sleeve Pocket Oxford
+													Shirt</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$280.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-6">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="section__head d-flex justify-content-between mb-30">
+								<div class="section__title section__title-2">
+									<h5 class="st-titile">On-sale Products</h5>
+								</div>
+								<div class="button-wrap button-wrap-2">
+									<a href="product.html">See All <i class="fal fa-chevron-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-7.jpg' %}" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">OnePlus Nord N100 64GB, 4GB RAM</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price d-price">
+												<span>$245.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-7.jpg' %}" alt=""></a>
+											</div>
+											<div class="product__offer">
+												<span class="discount">-25%</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">Smartwatch with Heart Rate 256bpm</a>
+											</h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$130.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-7.jpg' %}" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">Samsang Galaxy A21S 4GB Ram, 128Gb</a>
+											</h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$180.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-4 col-lg-6">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="section__head d-flex justify-content-between mb-30">
+								<div class="section__title section__title-2">
+									<h5 class="st-titile">Top Rate Products</h5>
+								</div>
+								<div class="button-wrap button-wrap-2">
+									<a href="product.html">See All <i class="fal fa-chevron-right"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-10.jpg' %}" alt=""></a>
+											</div>
+											<div class="product__offer">
+												<span class="discount">-5%</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">Apple iPhone XR 64GB Red Dual-SIM</a>
+											</h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price d-price">
+												<span>$165.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-10.jpg' %}" alt=""></a>
+											</div>
+											<div class="product__offer">
+												<span class="discount">-25%</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">MW65 Wireless Headphones Z1000</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$130.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-12">
+							<div class="single-features-item b-radius-2 mb-20">
+								<div class="row  g-0 align-items-center">
+									<div class="col-4">
+										<div class="features-thum">
+											<div class="features-product-image w-img">
+												<a href="product-details.html"><img
+														src="{% static 'assets/img/features-product/fp-10.jpg' %}" alt=""></a>
+											</div>
+										</div>
+									</div>
+									<div class="col-8">
+										<div class="product__content product__content-d product__content-d-2">
+											<h6><a href="product-details.html">All-new Fire HD 10 Tablet 10.1″ Full
+													HD</a></h6>
+											<div class="rating mb-5">
+												<ul>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+													<li><a href="#"><i class="fal fa-star"></i></a></li>
+												</ul>
+												<span>(01 review)</span>
+											</div>
+											<div class="price">
+												<span>$140.00 <del>$110</del></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	
+
+	<!-- moveing-text-area-start -->
+	<section class="moveing-text-area">
+		<div class="container">
+			<div class="ovic-running">
+				<div class="wrap">
+					<div class="inner">
+						<p class="item">Free UK Delivery - Return Over $100.00 ( Excluding Homeware ) | Free UK Collect
+							From Store</p>
+						<p class="item">Design Week / 15% Off the website / Code: AYOSALE-2020</p>
+						<p class="item">Always iconic. Now organic. Introducing the $20 Organic Tee.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="modal fade" id="productModalId" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered product__modal" role="document">
+			<div class="modal-content">
+				<div class="product__modal-wrapper p-relative">
+					<div class="product__modal-close p-absolute">
+						<button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+					</div>
+					<div class="product__modal-inner">
+						<div class="row">
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+								<div class="product__modal-box">
+									<div class="tab-content" id="modalTabContent">
+										<div class="tab-pane fade show active" id="nav1" role="tabpanel"
+											aria-labelledby="nav1-tab">
+											<div class="product__modal-img w-img">
+												<img src="assets/img/quick-view/quick-view-1.jpg" alt="">
+											</div>
+										</div>
+										<div class="tab-pane fade" id="nav2" role="tabpanel" aria-labelledby="nav2-tab">
+											<div class="product__modal-img w-img">
+												<img src="assets/img/quick-view/quick-view-2.jpg" alt="">
+											</div>
+										</div>
+										<div class="tab-pane fade" id="nav3" role="tabpanel" aria-labelledby="nav3-tab">
+											<div class="product__modal-img w-img">
+												<img src="assets/img/quick-view/quick-view-3.jpg" alt="">
+											</div>
+										</div>
+										<div class="tab-pane fade" id="nav4" role="tabpanel" aria-labelledby="nav4-tab">
+											<div class="product__modal-img w-img">
+												<img src="assets/img/quick-view/quick-view-4.jpg" alt="">
+											</div>
+										</div>
+									</div>
+									<ul class="nav nav-tabs" id="modalTab" role="tablist">
+										<li class="nav-item" role="presentation">
+											<button class="nav-link active" id="nav1-tab" data-bs-toggle="tab"
+												data-bs-target="#nav1" type="button" role="tab" aria-controls="nav1"
+												aria-selected="true">
+												<img src="assets/img/quick-view/quick-nav-1.jpg" alt="">
+											</button>
+										</li>
+										<li class="nav-item" role="presentation">
+											<button class="nav-link" id="nav2-tab" data-bs-toggle="tab"
+												data-bs-target="#nav2" type="button" role="tab" aria-controls="nav2"
+												aria-selected="false">
+												<img src="assets/img/quick-view/quick-nav-2.jpg" alt="">
+											</button>
+										</li>
+										<li class="nav-item" role="presentation">
+											<button class="nav-link" id="nav3-tab" data-bs-toggle="tab"
+												data-bs-target="#nav3" type="button" role="tab" aria-controls="nav3"
+												aria-selected="false">
+												<img src="assets/img/quick-view/quick-nav-3.jpg" alt="">
+											</button>
+										</li>
+										<li class="nav-item" role="presentation">
+											<button class="nav-link" id="nav4-tab" data-bs-toggle="tab"
+												data-bs-target="#nav4" type="button" role="tab" aria-controls="nav4"
+												aria-selected="false">
+												<img src="assets/img/quick-view/quick-nav-4.jpg" alt="">
+											</button>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+								<div class="product__modal-content">
+									<h4><a href="product-details.html">Samsung C49J89: £875, Debenhams Plus</a></h4>
+									<div class="product__review d-sm-flex">
+										<div class="rating rating__shop mb-10 mr-30">
+											<ul>
+												<li><a href="#"><i class="fal fa-star"></i></a></li>
+												<li><a href="#"><i class="fal fa-star"></i></a></li>
+												<li><a href="#"><i class="fal fa-star"></i></a></li>
+												<li><a href="#"><i class="fal fa-star"></i></a></li>
+												<li><a href="#"><i class="fal fa-star"></i></a></li>
+											</ul>
+										</div>
+										<div class="product__add-review mb-15">
+											<span>01 review</span>
+										</div>
+									</div>
+									<div class="product__price">
+										<span>$109.00 – $307.00</span>
+									</div>
+									<div class="product__modal-des mt-20 mb-15">
+										<ul>
+											<li><a href="#"><i class="fas fa-circle"></i> Bass and Stereo Sound.</a>
+											</li>
+											<li><a href="#"><i class="fas fa-circle"></i> Display with 3088 x 1440
+													pixels resolution.</a></li>
+											<li><a href="#"><i class="fas fa-circle"></i> Memory, Storage & SIM: 12GB
+													RAM, 256GB.</a></li>
+											<li><a href="#"><i class="fas fa-circle"></i> Androi v10.0 Operating
+													system.</a></li>
+										</ul>
+									</div>
+									<div class="product__stock mb-20">
+										<span class="mr-10">Availability :</span>
+										<span>1795 in stock</span>
+									</div>
+									<div class="product__modal-form">
+										<form action="#">
+											<div class="pro-quan-area d-lg-flex align-items-center">
+												<div class="product-quantity mr-20 mb-25">
+													<div class="cart-plus-minus p-relative"><input type="text"
+															value="1" /></div>
+												</div>
+												<div class="pro-cart-btn mb-25">
+													<button class="cart-btn" type="submit">Add to cart</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="product__stock mb-30">
+										<ul>
+											<li><a href="#">
+													<span class="sku mr-10">SKU:</span>
+													<span>Samsung C49J89: £875, Debenhams Plus</span></a>
+											</li>
+											<li><a href="#">
+													<span class="cat mr-10">Categories:</span>
+													<span>iPhone, Tablets</span></a>
+											</li>
+											<li><a href="#">
+													<span class="tag mr-10">Tags:</span>
+													<span>Smartphone, Tablets</span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</main>
+
+{% endblock %}

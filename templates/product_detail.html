@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<main>
+    <section class="breadcrumb__area box-plr-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="breadcrumb__wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="product__details-nav d-sm-flex align-items-start">
+                        <ul class="nav nav-tabs flex-sm-column justify-content-between" id="productThumbTab"
+                            role="tablist">
+                            {% if product.image %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="thumbOne-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbOne" type="button" role="tab" aria-controls="thumbOne"
+                                    aria-selected="true">
+
+                                    <img src="{{product.image.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                            {% if product.image_1 %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="thumbTwo-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbTwo" type="button" role="tab" aria-controls="thumbTwo"
+                                    aria-selected="false">
+                                    <img src="{{product.image_1.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                            {% if product.image_2 %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="thumbThree-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbThree" type="button" role="tab" aria-controls="thumbThree"
+                                    aria-selected="false">
+                                    <img src="{{product.image_2.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <div class="product__details-thumb">
+                            <div class="tab-content" id="productThumbContent">
+                                {% if product.image %}
+                                <div class="tab-pane fade show active" id="thumbOne" role="tabpanel"
+                                    aria-labelledby="thumbOne-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{product.image.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if product.image_1 %}
+                                <div class="tab-pane fade" id="thumbTwo" role="tabpanel" aria-labelledby="thumbTwo-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{product.image_1.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if product.image_2 %}
+                                <div class="tab-pane fade" id="thumbThree" role="tabpanel"
+                                    aria-labelledby="thumbThree-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{product.image_2.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="product__details-content">
+                        <h6>{{product.name}}</h6>
+                        <span>({{product.stock}}штук осталось)</span>
+                        <!-- <div class="pd-rating mb-10">
+                            <ul class="rating">
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            </ul>
+                            
+                        </div> -->
+                        <div class="price mb-10">
+                            <span>{% if product.sale_price %}${{product.sale_price}}
+                                <del>{%endif%}${{product.price}}</del></span>
+                        </div>
+
+                        <div class="product-stock mb-20">
+                            <h5>Доступно: <span>({{product.stock}}штук осталось)</span></h5>
+                        </div>
+                        <div class="cart-option mb-15">
+
+                            <a href="{% url 'add_cart' product.id %}" class="cart-btn">Add to Cart</a>
+                        </div>
+
+                        <div class="product-tag-area mt-15">
+                            <div class="product_info">
+                                <span class="sku_wrapper">
+                                    <span class="title">Баркод:</span>
+                                    <span class="sku">DK1002</span>
+                                </span>
+                                <span class="posted_in">
+                                    <span class="title">Категория:</span>
+                                    <a href="#">iPhone</a>
+                                    <a href="#">Tablets</a>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-details-des mt-40 mb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="product__details-des-tab">
+                        <ul class="nav nav-tabs" id="productDesTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="des-tab" data-bs-toggle="tab" data-bs-target="#des"
+                                    type="button" role="tab" aria-controls="des" aria-selected="true">Описание
+                                </button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                    type="button" role="tab" aria-controls="review" aria-selected="false">Отзывы ({{reviews_count}})
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="prodductDesTaContent">
+                <div class="tab-pane fade active show" id="des" role="tabpanel" aria-labelledby="des-tab">
+                    <div class="product__details-des-wrapper">
+                        <p class="des-text mb-35">{{product.desc}}</p>
+                       
+
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    <div class="product__details-review">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="product__details-comment ">
+                                    <div class="comment-title mb-20">
+                                        <h3>Добавить отзыв</h3>
+                                    </div>
+
+                                    <div class="comment-input-box">
+                                        <form action="{% url 'submit_review' product.id %}" method="POST">
+                                            {% csrf_token %}
+
+                                            <div class="row">
+                                                <div class="col-xxl-6 col-xl-6">
+                                                    <div class="comment-input">
+                                                        <input type="hidden" name="rating" id="rating2" value="1"
+                                                            required>
+                                                        <input type="text" name="subject" placeholder="Заголовок">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-6 col-xl-6">
+                                                    <div class="comment-input">
+                                                        <textarea placeholder="Ваш отзыв" name="review"
+                                                            class="comment-input comment-textarea"></textarea>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-xxl-12">
+                                                    <div class="comment-submit">
+                                                        {% if user.is_authenticated %}
+                                                        {% if orderproduct %}
+                                                        <button type="submit" class="cart-btn">Отправить</button>
+
+                                                        {% else %}
+                                                        <p> Bы должны приобрести этот продукт, чтобы опубликовать отзыв
+                                                        </p>
+                                                        {% endif %}
+                                                        {% else %}
+                                                        <a href="{% url 'login' %}" class="cart-btn">Пожалуйста авторизуйтесь</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 2%;">
+                            <!-- <div class="col-xl-4">
+                                <div class="review-rate">
+                                    <h5>5.00</h5>
+                                    <div class="review-star">
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                    </div>
+                                    <span class="review-count">01 Review</span>
+                                </div>
+                            </div> -->
+                            <div class="col-xl-12">
+                                <div class="review-des-infod">
+                                    <h6>1 отзыв для "<span>{{product.name}}</span>"</h6>
+                                    <div class="review-details-des">
+                                        {% for i in profile%}
+                                        <div class="author-image mr-15">
+                                            <a href="#"><img src="{{i.profile_avatar.url}}" style="max-width: 60px;"
+                                                    alt=""></a>
+                                        </div>
+                                        {% endfor %}
+                                        {% for i in reviews %}
+                                        <div class="review-details-content">
+                                            <div class="str-info">
+
+                                                <div class="add-review-option">
+                                                    <a href="#">Добавить отзыв</a>
+                                                </div>
+                                            </div>
+                                            <div class="name-date mb-30">
+                                                <h6> {{i.user.first_name}} – <span> {{i.updated_at}}</span></h6>
+                                            </div>
+                                            <p> {{i.subject}}<br> {{i.review}}</p>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+{% endblock %}

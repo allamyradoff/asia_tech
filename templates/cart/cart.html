@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<main>
+    {% for i in cart_banner %}
+    <div class="page-banner-area page-banner-height-2" data-background="{{i.image.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="page-banner-content text-center">
+                        <h4 class="breadcrumb-title">Ваша корзина</h4>
+                        <div class="breadcrumb-two">
+                            <nav>
+                               <nav class="breadcrumb-trail breadcrumbs">
+                                  <ul class="breadcrumb-menu">
+                                     <li class="breadcrumb-trail">
+                                        <a href="{% url 'home' %}"><span>Главная</span></a>
+                                     </li>
+                                     <li class="trail-item">
+                                        <span>Корзина</span>
+                                     </li>
+                                  </ul>
+                               </nav> 
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <section class="cart-area pt-120 pb-120">
+        <div class="container">
+           <div class="row">
+              <div class="col-12">
+                    <form action="#">
+                       <div class="table-content table-responsive">
+                          <table class="table">
+                                <thead>
+                                   <tr>
+                                      <th class="product-thumbnail">Картинки</th>
+                                      <th class="cart-product-name">Товар</th>
+                                      <th class="product-price">Цена товара</th>
+                                      <th class="product-quantity">Количество</th>
+                                      <th class="product-remove">Удаление</th>
+
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in cart_items %}
+                                   <tr>
+                                      <td class="product-thumbnail"><a ><img src="{{i.product.image.url}}" alt=""></a></td>
+                                      <td class="product-name"><a >{{i.product.name}}</a></td>
+                                      <td class="product-price"><span class="amount">${{i.product.price}}</span></td>
+                                      <td class="product-quantity">
+                                            
+                                          <a class="btn btn-light" style="background-color: #fcbe00;" href="{% url 'remove_cart' i.product.id  %}">-</a>
+                                          <input type="text" style="text-align: center;"  value="{{i.quantity}}">
+                                          <a class="btn btn-light" style="background-color: #fcbe00;" href="{% url 'add_cart' i.product.id  %}">+</a>
+                                      </td>
+                                      <td class="product-remove"><a href="{% url 'delete_cart' i.product.id i.id %}"><i class="fa fa-times"></i></a></td>
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                </tbody>
+                          </table>
+                       </div>
+                       
+                       <div class="row justify-content-end">
+                          <div class="col-md-5">
+                                <div class="cart-page-total">
+                                   <h2>Всего в корзине</h2>
+                                   <ul class="mb-20">
+                                      <li>Общий <span>${{total}}</span></li>
+                                   </ul>
+                                   <a class="tp-btn-h1" href="{% url 'checkout' %}">Oформлению заказа</a>
+                                   <a class="tp-btn-h1" href="{% url 'store' %}">Продолжить покупки</a>
+                                </div>
+                          </div>
+                       </div>
+                    </form>
+              </div>
+           </div>
+        </div>
+     </section>
+
+    <section class="cta-area d-ldark-bg pt-55 pb-10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="cta-item cta-item-d mb-30">
+                        <h5 class="cta-title">Follow Us</h5>
+                        <p>We make consolidating, marketing and tracking your social media website easy.</p>
+                        <div class="cta-social">
+                            <div class="social-icon">
+                                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="rss"><i class="fas fa-rss"></i></a>
+                                <a href="#" class="dribbble"><i class="fab fa-dribbble"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="cta-item mb-30">
+                        <h5 class="cta-title">Sign Up To Newsletter</h5>
+                        <p>Join 60.000+ subscribers and get a new discount coupon  on every Saturday.</p>
+                        <div class="subscribe__form">
+                            <form action="#">
+                                <input type="email" placeholder="Enter your email here...">
+                                <button>subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="cta-item mb-30">
+                        <h5 class="cta-title">Download App</h5>
+                        <p>DukaMarket App is now available on App Store & Google Play. Get it now.</p>
+                        <div class="cta-apps">
+                            <div class="apps-store">
+                                <a href="#"><img src="assets/img/brand/app_ios.png" alt=""></a>
+                                <a href="#"><img src="assets/img/brand/app_android.png" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+
+
+
+
+
+{% endblock %}
