@@ -7,12 +7,11 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     desc = models.TextField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='category/', blank=True, null=True)
-    icon  = models.CharField(max_length=255, blank=True, null=True)
+    icon = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name = "category"
         verbose_name_plural = "categories"
-
 
     def prod_count(self):
         pc = Product.objects.filter(category=self.id)
@@ -21,6 +20,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Cours(models.Model):
+    cours = models.FloatField()
 
 
 class Product(models.Model):
@@ -43,6 +46,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_price(self):
+        course = Cours.objects.latest('id')
+        price = self.price * course.cours
+        return price
 
 
 class VariationManager(models.Manager):
@@ -67,12 +75,10 @@ class Variation(models.Model):
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)
 
-
     objects = VariationManager()
 
     def __str__(self):
         return self.variation_value
-
 
 
 class ReviewRating(models.Model):
@@ -86,7 +92,5 @@ class ReviewRating(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     def __str__(self):
         return self.subject
-

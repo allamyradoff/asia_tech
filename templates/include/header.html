@@ -140,7 +140,9 @@
                                     <li><a href="about.html">О нас</a></li>
                                     <li><a href="contact.html">Свяжитесь с нами</a></li>
                                     
+                                    <li><a href="{% url 'logout' %}">Выход</a></li>
                                     <li><a href="tel:+99362631593">Нужна помощь? +99362631593 </a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -193,7 +195,7 @@
                             </div>
                             {% else %}
                             <div class="block-userlink">
-                                <a class="icon-link icon-link-2" href="#">
+                                <a class="icon-link icon-link-2" href="{% url 'dashboard' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
                                         <span class="sub">Добро пожаловать! {{user.first_name}} </span>
@@ -350,6 +352,7 @@
                             <a class="popup-image" href="{% static 'assets/img/gallery/gal-1.jpg' %}">
                                 <img src="{% static 'assets/img/gallery/gal-1.jpg' %}" alt="">
                             </a>
+                            <a href="" style="color: #000;">Aksesuarlar telefon uchin </a>
                         </div>
                     </div>
                     <div class="col-4">

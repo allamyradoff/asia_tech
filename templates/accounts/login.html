@@ -19,9 +19,9 @@
                         <h5>Войти</h5>
                         <form action="{% url 'login' %}" method="POST">
                             {% csrf_token %}
-                            <label for="name">Username or email address  <span>*</span></label>
-                            <input  type="text" placeholder="Enter Username" name="email">
-                            <label for="pass">Password <span>*</span></label>
+                            <label for="name">Введите номер телефона   <span>*</span></label>
+                            <input  type="text" placeholder="Enter Username" name="phone_number">
+                            <label for="pass">Пароль <span>*</span></label>
                             <input  type="password" placeholder="Enter password..." name="password">
                             
                             {% comment %} <a href="login.html" class="tp-in-btn w-100">log in</a> {% endcomment %}
@@ -34,7 +34,8 @@
             </div>
         </div>
     </div>
-
+    
 
 </main>
 {% endblock %}
+

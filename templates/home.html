@@ -127,22 +127,15 @@
 							<div class="product__offer">
 								<span class="discount" style="background-color: red;">-{{i.sale_percent}}%</span>
 							</div>
-							<div class="product-action product-action-2">
-								<a href="#" class="icon-box icon-box-1" data-bs-toggle="modal"
-									data-bs-target="#productModalId">
-									<i class="fal fa-eye"></i>
-									<i class="fal fa-eye"></i>
-								</a>
-								
-								
-							</div>
+							
 						</div>
 						<div class="product__content product__content-3">
 							<h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
 							
 							<div class="price mb-20">
-								<span>${{i.price}}</span>
+								<span>{% if i.sale_price %} {{i.sale_price}} TMT<del>{% endif %} {{i.get_price}} TMT</del></span>
 							</div>
+							{{i_prod_course}}
 							
 							<div class="progress-rate">
 								<span>Осталось:{{i.stock}}</span>
@@ -151,7 +144,7 @@
 						<div class="product__add-cart text-center">
 							<a href="{% url 'add_cart' i.id %}"
 								class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-								Add to Cart
+								Добавить в корзину
 							</a>
 						</div>
 					</div>
@@ -198,7 +191,7 @@
 										<span>({{top_product.product.stock}}штук осталось)</span>
 									</div>
 									<div class="price d-price mb-10">
-										<span>${{top_product.product.sale_price}} <del>${{top_product.product.price}}</del></span>
+										<span> {{top_product.product.sale_price}} TMT<del> {{top_product.product.price}} TMT</del></span>
 									</div>
 									<div class="features-des mb-25">
 										<ul>
@@ -217,7 +210,7 @@
 										</ul>
 									</div>
 									<div class="cart-option">
-										<a href="{% url 'add_cart' top_product.product.id %}" class="cart-btn-4 w-100 mr-10">Add to Cart</a>
+										<a href="{% url 'add_cart' top_product.product.id %}" class="cart-btn-4 w-100 mr-10">Добавить в корзину</a>
 									</div>
 								</div>
 							</div>
@@ -252,7 +245,7 @@
 												</div>
 												<div class="price d-price">
 													
-													<span>{% if i.product.sale_price %}${{i.product.sale_price}} <del>{% endif %}${{i.product.price}}</del></span>
+													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT <del>{% endif %} {{i.product.price}} TMT</del></span>
 													
 												</div>
 											</div>
@@ -290,7 +283,7 @@
 												</div>
 												<div class="price d-price">
 													
-													<span>{% if i.product.sale_price %}${{i.product.sale_price}} <del>{% endif %}${{i.product.price}}</del></span>
+													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT  <del>{% endif %} {{i.product.price}} TMT</del></span>
 													
 												</div>
 											</div>
@@ -386,7 +379,7 @@
 								<span>({{top_product.product.stock}}штук осталось)</span>
 							</div>
 							<div class="price">
-								<span >{% if i.sale_price %}${{i.sale_price}} <del>{% endif %}${{i.price}}</del></span>
+								<span >{% if i.sale_price %} {{i.sale_price}} TMT<del>{% endif %} {{i.price}} TMT</del></span>
 							</div>
 						</div>
 						<div class="product__add-cart text-center">
@@ -457,7 +450,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price d-price">
-												<span>$210.00 <del>$110</del></span>
+												<span>TMT210.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -492,7 +485,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$160.00 <del>$110</del></span>
+												<span>TMT160.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -525,7 +518,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$280.00 <del>$110</del></span>
+												<span>TMT280.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -573,7 +566,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price d-price">
-												<span>$245.00 <del>$110</del></span>
+												<span>TMT245.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -609,7 +602,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$130.00 <del>$110</del></span>
+												<span>TMT130.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -642,7 +635,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$180.00 <del>$110</del></span>
+												<span>TMT180.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -694,7 +687,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price d-price">
-												<span>$165.00 <del>$110</del></span>
+												<span>TMT165.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -729,7 +722,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$130.00 <del>$110</del></span>
+												<span>TMT130.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -762,7 +755,7 @@
 												<span>(01 review)</span>
 											</div>
 											<div class="price">
-												<span>$140.00 <del>$110</del></span>
+												<span>TMT140.00 <del>TMT110</del></span>
 											</div>
 										</div>
 									</div>
@@ -782,10 +775,10 @@
 			<div class="ovic-running">
 				<div class="wrap">
 					<div class="inner">
-						<p class="item">Free UK Delivery - Return Over $100.00 ( Excluding Homeware ) | Free UK Collect
+						<p class="item">Free UK Delivery - Return Over TMT 100.00 ( Excluding Homeware ) | Free UK Collect
 							From Store</p>
 						<p class="item">Design Week / 15% Off the website / Code: AYOSALE-2020</p>
-						<p class="item">Always iconic. Now organic. Introducing the $20 Organic Tee.</p>
+						<p class="item">Always iconic. Now organic. Introducing the TMT 20 Organic Tee.</p>
 					</div>
 				</div>
 			</div>
@@ -876,7 +869,7 @@
 										</div>
 									</div>
 									<div class="product__price">
-										<span>$109.00 – $307.00</span>
+										<span>TMT 109.00 – TMT 307.00</span>
 									</div>
 									<div class="product__modal-des mt-20 mb-15">
 										<ul>

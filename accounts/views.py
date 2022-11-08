@@ -76,10 +76,10 @@ def login(request):
 
 
     if request.method == 'POST':
-        email = request.POST['email']
+        email = request.POST['phone_number']
         password = request.POST['password']
 
-        user = auth.authenticate(email=email, password=password)
+        user = auth.authenticate(phone_number=email, password=password)
 
         if user is not None:
 
@@ -126,6 +126,8 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+    logo = Logo.objects.all()
+
     user = request.user
     print(user)
 
@@ -139,7 +141,9 @@ def dashboard(request):
 
     context = {
         'orders_count': orders_count,
-        'userprofile': userprofile
+        'userprofile': userprofile,
+        'logo':logo
+
     }
     return render(request, 'accounts/dashboard.html', context)
 
@@ -155,6 +159,8 @@ def my_orders(request):
 
 
 def register_profile(request):
+    logo = Logo.objects.all()
+
     user = request.user.id
     print(user)
     if request.method == 'POST':
@@ -176,16 +182,22 @@ def register_profile(request):
                 profile_avatar=profile_avatar
             )
             form.save()
-            return HttpResponse('ok')
+            return redirect('dashboard')
 
         else:
             return HttpResponse('ishlemedi')
 
-    return render(request, 'accounts/register_profile.html')
+    context = {
+        'logo':logo
+    }
+
+    return render(request, 'accounts/register_profile.html', context)
 
 
 @login_required(login_url='login')
 def edit_profile(request):
+    logo = Logo.objects.all()
+    
     userprofile = get_object_or_404(UserProfile, user=request.user)
     if request.method == "POST":
         user_form = UserForm(request.POST, instance=request.user)
@@ -204,7 +216,9 @@ def edit_profile(request):
     context = {
         'user_form': user_form,
         'profile_form': profile_form,
-        'userprofile': userprofile
+        'userprofile': userprofile,
+        'logo':logo
+
     }
     return render(request, 'accounts/edit_profile.html', context)
 
