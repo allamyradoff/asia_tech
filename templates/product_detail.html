@@ -12,8 +12,8 @@
                     <div class="breadcrumb__wrapper">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                <li class="breadcrumb-item"><a href="index.html">Baş sahypa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dükan</li>
                             </ol>
                         </nav>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="col-xl-6">
                     <div class="product__details-content">
                         <h6>{{product.name}}</h6>
-                        <span>({{product.stock}}штук осталось)</span>
+                        <span>({{product.stock}} ştuk galanlar)</span>
                         <!-- <div class="pd-rating mb-10">
                             <ul class="rating">
                                 <li><a href="#"><i class="fal fa-star"></i></a></li>
@@ -102,26 +102,26 @@
                             
                         </div> -->
                         <div class="price mb-10">
-                            <span>{% if product.sale_price %}${{product.sale_price}}
-                                <del>{%endif%}${{product.price}}</del></span>
+                            <span>{% if product.sale_price %}{{product.sale_price}}TMT
+                                <del>{%endif%}{{product.price}}TMT</del></span>
                         </div>
 
                         <div class="product-stock mb-20">
-                            <h5>Доступно: <span>({{product.stock}}штук осталось)</span></h5>
+                            <h5>Elýeterli: <span>({{product.stock}} ştuk galanlar)</span></h5>
                         </div>
                         <div class="cart-option mb-15">
 
-                            <a href="{% url 'add_cart' product.id %}" class="cart-btn">Add to Cart</a>
+                            <a href="{% url 'add_cart' product.id %}" class="cart-btn">Sebede goşmak</a>
                         </div>
 
                         <div class="product-tag-area mt-15">
                             <div class="product_info">
                                 <span class="sku_wrapper">
-                                    <span class="title">Баркод:</span>
+                                    <span class="title">Barkod:</span>
                                     <span class="sku">DK1002</span>
                                 </span>
                                 <span class="posted_in">
-                                    <span class="title">Категория:</span>
+                                    <span class="title">Kategoriýa:</span>
                                     <a href="#">iPhone</a>
                                     <a href="#">Tablets</a>
                                 </span>
@@ -142,13 +142,13 @@
                         <ul class="nav nav-tabs" id="productDesTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="des-tab" data-bs-toggle="tab" data-bs-target="#des"
-                                    type="button" role="tab" aria-controls="des" aria-selected="true">Описание
+                                    type="button" role="tab" aria-controls="des" aria-selected="true">Beýany
                                 </button>
                             </li>
 
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                                    type="button" role="tab" aria-controls="review" aria-selected="false">Отзывы ({{reviews_count}})
+                                    type="button" role="tab" aria-controls="review" aria-selected="false">Synlar ({{reviews_count}})
                                 </button>
                             </li>
                         </ul>
@@ -172,7 +172,7 @@
                             <div class="col-xl-12">
                                 <div class="product__details-comment ">
                                     <div class="comment-title mb-20">
-                                        <h3>Добавить отзыв</h3>
+                                        <h3>Syn beriň</h3>
                                     </div>
 
                                     <div class="comment-input-box">
@@ -199,14 +199,14 @@
                                                     <div class="comment-submit">
                                                         {% if user.is_authenticated %}
                                                         {% if orderproduct %}
-                                                        <button type="submit" class="cart-btn">Отправить</button>
+                                                        <button type="submit" class="cart-btn">Iber</button>
 
                                                         {% else %}
-                                                        <p> Bы должны приобрести этот продукт, чтобы опубликовать отзыв
+                                                        <p> Syn ýazmak üçin bu önümi satyn almaly.
                                                         </p>
                                                         {% endif %}
                                                         {% else %}
-                                                        <a href="{% url 'login' %}" class="cart-btn">Пожалуйста авторизуйтесь</a>
+                                                        <a href="{% url 'login' %}" class="cart-btn">Girişiňizi haýyş edýäris</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>
@@ -245,7 +245,7 @@
                                             <div class="str-info">
 
                                                 <div class="add-review-option">
-                                                    <a href="#">Добавить отзыв</a>
+                                                    <a href="#">Syn beriň</a>
                                                 </div>
                                             </div>
                                             <div class="name-date mb-30">

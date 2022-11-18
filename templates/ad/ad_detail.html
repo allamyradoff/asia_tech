@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<main>
+    <section class="breadcrumb__area box-plr-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="breadcrumb__wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Baş sahypa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dükan</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="product__details-nav d-sm-flex align-items-start">
+                        <ul class="nav nav-tabs flex-sm-column justify-content-between" id="productThumbTab"
+                            role="tablist">
+                            {% if ad.image %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="thumbOne-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbOne" type="button" role="tab" aria-controls="thumbOne"
+                                    aria-selected="true">
+
+                                    <img src="{{ad.image.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                            {% if ad.image_1 %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="thumbTwo-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbTwo" type="button" role="tab" aria-controls="thumbTwo"
+                                    aria-selected="false">
+                                    <img src="{{ad.image_2.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                            {% if ad.image_3 %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="thumbThree-tab" data-bs-toggle="tab"
+                                    data-bs-target="#thumbThree" type="button" role="tab" aria-controls="thumbThree"
+                                    aria-selected="false">
+                                    <img src="{{ad.image_3.url}}" style="max-width: 85px;" alt="">
+                                </button>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        <div class="product__details-thumb">
+                            <div class="tab-content" id="productThumbContent">
+                                {% if ad.image %}
+                                <div class="tab-pane fade show active" id="thumbOne" role="tabpanel"
+                                    aria-labelledby="thumbOne-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{ad.image.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if ad.image_2 %}
+                                <div class="tab-pane fade" id="thumbTwo" role="tabpanel" aria-labelledby="thumbTwo-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{ad.image_2.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if ad.image_3 %}
+                                <div class="tab-pane fade" id="thumbThree" role="tabpanel"
+                                    aria-labelledby="thumbThree-tab">
+                                    <div class="product__details-nav-thumb w-img">
+                                        <img src="{{product.image_3.url}}" style="max-width: 600px;" alt="">
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="product__details-content">
+                        <h6>{{ad.name}}</h6>
+
+                        <div class="price mb-10">
+                            <span>{{ad.price}}TMT</span>
+                        </div>
+
+                        
+                        <div class="cart-option mb-15">
+
+                        </div>
+
+                        <div class="product-tag-area mt-15">
+                            <div class="product_info">
+                                <span class="sku_wrapper">
+                                    <span class="title">Barkod:</span>
+                                    <span class="sku">DK1002</span>
+                                </span>
+                                <span class="posted_in">
+                                    <span class="title">Kategoriýa:</span>
+                                    <a href="#">iPhone</a>
+                                    <a href="#">Tablets</a>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-details-des mt-40 mb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="product__details-des-tab">
+                        <ul class="nav nav-tabs" id="productDesTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="des-tab" data-bs-toggle="tab" data-bs-target="#des"
+                                    type="button" role="tab" aria-controls="des" aria-selected="true">Beýany
+                                </button>
+                            </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                    type="button" role="tab" aria-controls="review" aria-selected="false">Synlar ({{reviews_count}})
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="prodductDesTaContent">
+                <div class="tab-pane fade active show" id="des" role="tabpanel" aria-labelledby="des-tab">
+                    <div class="product__details-des-wrapper">
+                        <p class="des-text mb-35">{{ad.desc}}</p>
+                       
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</main>
+{% endblock %}

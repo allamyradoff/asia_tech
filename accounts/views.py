@@ -1,10 +1,11 @@
 from email import message
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import *
-from .models import Account
+from .models import *
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -59,7 +60,7 @@ def register(request):
             # send_email = EmailMessage(mail_subject, message, to=[to_email])
             # send_email.send()
             messages.success(request, 'Регистрация прошла успешна')
-            return redirect('register_profile')
+            return redirect('login')
 
     else:
         form = RegisterForm()
@@ -75,6 +76,7 @@ def login(request):
     logo = Logo.objects.all()
 
 
+
     if request.method == 'POST':
         email = request.POST['phone_number']
         password = request.POST['password']
@@ -84,9 +86,7 @@ def login(request):
         if user is not None:
 
             try:
-                print('try')
                 cart = Cart.objects.get(cart_id=_cart_id(request))
-                print('cart')
 
                 is_cart_item_exists = CartItem.objects.filter(
                     cart=cart).exists()
@@ -104,6 +104,7 @@ def login(request):
 
             auth.login(request, user)
             messages.success(request, 'Bы вошли в систему')
+
             return redirect('home')
         else:
             messages.error(request, 'Неверный логин или пароль')
@@ -126,18 +127,33 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+
+    # user = request.user
+
+    # user_profile = UserProfile.objects.filter(user=user)
+
+    # if user_profile == 0:
+    #     return redirect('register_profile')
+
+    # if request.user.userprofile is not None:
+    #     return redirect('register_profile')
+
+
     logo = Logo.objects.all()
 
     user = request.user
-    print(user)
 
 
+    try:
 
-    order = Order.objects.order_by(
-        '-created_at').filter(user_id=request.user.id, is_ordered=True)
-    orders_count = order.count()
+        order = Order.objects.order_by(
+            '-created_at').filter(user_id=request.user.id, is_ordered=True)
+        orders_count = order.count()
 
-    userprofile = UserProfile.objects.get(user_id=request.user.id)
+        userprofile = UserProfile.objects.get(user_id=request.user.id)
+
+    except ObjectDoesNotExist:
+        return redirect('register_profile')
 
     context = {
         'orders_count': orders_count,

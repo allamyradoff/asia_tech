@@ -54,7 +54,7 @@ def home(request):
 
 
 def all_product(request):
-    all_products = Product.objects.all()
+    all_products = Product.objects.order_by('-id')
     category_count = all_products.count()
     category = Category.objects.all()
     store_banner = StoreBanner.objects.all()
@@ -85,6 +85,7 @@ def all_product(request):
 def store(request, id):
     category = Category.objects.all()
     product = Product.objects.filter(category=id, is_active=True)
+    product = product.order_by('-id')
     all_products = Product.objects.all()
     category_count = all_products.count()
     store_banner = StoreBanner.objects.all()

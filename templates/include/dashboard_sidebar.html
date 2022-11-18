@@ -3,13 +3,15 @@
 <aside class="col-md-3">
     <!--   SIDEBAR   -->
     <ul class="list-group">
-        <a class="list-group-item {% if '/dashboard/' in request.path %}active{% endif %}" href="{% url 'dashboard' %}"> Профиль </a>
-        <a class="list-group-item {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}"> Мои заказы </a>
-        <a class="list-group-item {% if '/edit_profile/' in request.path %}active{% endif %}" href="{% url 'edit_profile' %}"> Изменить профиль </a>
-        <a class="list-group-item {% if '/changePassword/' in request.path %}active{% endif %}" href="{% url 'changePassword' %}">Изменить пароль </a>
+        <a class="list-group-item {% if '/dashboard/' in request.path %}active{% endif %}" href="{% url 'dashboard' %}"> Profil </a>
+        <a class="list-group-item {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}">Sargytlarym</a>
+        <a class="list-group-item {% if '/edit_profile/' in request.path %}active{% endif %}" href="{% url 'edit_profile' %}"> Profili redaktirläň </a>
+        <a class="list-group-item {% if '/changePassword/' in request.path %}active{% endif %}" href="{% url 'changePassword' %}">Paroly üýtgetmek </a>
+        <a class="list-group-item {% if '/added_ad_product/' in request.path %}active{% endif %}" href="{% url 'added_ad_product' %}">Mahabat goşuň</a>
+        <a class="list-group-item {% if '/my_ad/' in request.path %}active{% endif %}" href="{% url 'my_ad' %}">Bildirişlerim </a>
+
     </ul>
     <br>
-    <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log
-            out</span> </a>
+    <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Çykyş</span> </a>
     <!--   SIDEBAR .//END   -->
 </aside>

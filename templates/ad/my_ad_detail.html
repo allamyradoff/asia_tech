@@ -15,7 +15,7 @@
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Sargyt taryhyňyz:</strong>
+                        <strong class="d-inline-block mr-3">Ваша история заказов:</strong>
                     </header>
                     <div class="card-body">
                         <div class="row">
@@ -24,21 +24,18 @@
                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Sargyt #</th>
-                                            <th scope="col">Hasabyň ady</th>
-                                            <th scope="col">Telefon</th>
-                                            <th scope="col">Jemi sargyt</th>
-                                            <th scope="col">Sene</th>
+                                            <th scope="col">Ady #</th>
+                                            <th scope="col">Senesi</th>
+                                            <th scope="col"> Üýtgetmek</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for i in order %}
+                                        {% for i in ad %}
                                         <tr>
-                                            <th scope="row"><a href="{% url 'order_detail' i.id %}">{{i.order_number}}</a> </th>
-                                            <td>{{request.user.first_name}}</td>
-                                            <td>{{request.user.phone_number}}</td>
-                                            <td>{{i.order_total}}</td>
+                                            <th scope="row"><a href="#">{{i.name}}</a> </th>
                                             <td>{{i.created_at}}</td>
+                                            <td><a href="#" style="margin-top:2%" class="tp-in-btn w-100"> Üýtgetmek </a>
+                                            </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>   

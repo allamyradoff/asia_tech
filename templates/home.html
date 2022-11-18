@@ -95,18 +95,18 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile-d st-titile-d-2">Лучшие предложения дня</h5>
+							<h5 class="st-titile-d st-titile-d-2">Günüň iň gowy geleşikleri</h5>
 						</div>
 						<div class="offer-time">
-							<span class="offer-title d-none d-sm-block">Торопиться! Предложение заканчивается через:</span>
+							<span class="offer-title d-none d-sm-block">Tiz bol! Teklip gutarýar:</span>
 							<div class="countdown">
 								<div class="countdown-inner b-radius-2" data-countdown=""
 									data-date="Jan 26 2023 20:20:22">
 									<ul class="text-center">
-										<li><span data-days="30">30</span> Дни</li>
-										<li><span data-hours="9">9</span> Часы</li>
-										<li><span data-minutes="37">37</span> Мин</li>
-										<li><span data-seconds="38">38</span> сек</li>
+										<li><span data-days="30">30</span> Gün</li>
+										<li><span data-hours="9">9</span> Sagat</li>
+										<li><span data-minutes="37">37</span> Min</li>
+										<li><span data-seconds="38">38</span> Sek</li>
 									</ul>
 								</div>
 							</div>
@@ -144,7 +144,7 @@
 						<div class="product__add-cart text-center">
 							<a href="{% url 'add_cart' i.id %}"
 								class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-								Добавить в корзину
+								Sebede goşuň
 							</a>
 						</div>
 					</div>
@@ -162,10 +162,10 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile">Самые популярные товары</h5>
+							<h5 class="st-titile">Iň meşhur önümler</h5>
 						</div>
 						<div class="button-wrap button-wrap-2">
-							<a href="{% url 'store' %}">Посмотреть весь продукт <i class="fal fa-chevron-right"></i></a>
+							<a href="{% url 'store' %}">Ähli harytlar <i class="fal fa-chevron-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -279,7 +279,7 @@
 												<h6><a href="product-details.html">{{i.product.name}}</a></h6>
 												<div class="rating mb-5">
 													
-													<span>({{i.product.stock}}штук осталось)</span>
+													<span>({{i.product.stock}}ştuk galanlar)</span>
 												</div>
 												<div class="price d-price">
 													
@@ -347,10 +347,10 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile">Последние добавленные продукты</h5>
+							<h5 class="st-titile">Iň soňky goşulan önümler</h5>
 						</div>
 						<div class="button-wrap button-wrap-2">
-							<a href="{% url 'store' %}">Посмотреть все продукты <i class="fal fa-chevron-right"></i></a>
+							<a href="{% url 'store' %}">Ähli harytlar <i class="fal fa-chevron-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -376,7 +376,7 @@
 							<h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
 							<div class="rating mb-5 mt-10">
 								
-								<span>({{top_product.product.stock}}штук осталось)</span>
+								<span>({{top_product.product.stock}}ştuk galanlar)</span>
 							</div>
 							<div class="price">
 								<span >{% if i.sale_price %} {{i.sale_price}} TMT<del>{% endif %} {{i.price}} TMT</del></span>

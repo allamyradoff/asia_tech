@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<main>
+    <!-- breadcrumb__area-start -->
+    <section class="breadcrumb__area box-plr-75">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-12">
+                    <div class="breadcrumb__wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Baş sahypa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dükan</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb__area-end -->
+
+    <!-- shop-area-start -->
+    <div class="shop-area mb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4">
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Haryt kategoriýalary</h5>
+                        <div class="widget-category-list mt-20">
+                            <form action="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="{% url 'all_ads' %}"><label>Ähli bildirişler
+                                            <span>({{ad_count}})</span></label></a>
+                                </div>
+                                {% for i in cat_ad %}
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="{{i.id}} name="cat-item">
+                                    <a href="{% url 'store' i.id %}"><label for="{{i.id}}">{{i.name}}
+                                            <span>({{i.ad_count}})</span></label></a>
+                                </div>
+                                {% endfor %}
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-xl-9 col-lg-8">
+                    <div class="shop-banner mb-30">
+                        <div class="banner-image">
+                            {% for i in store_banner%}
+                            <img class="banner-l" src="{{i.image.url}}" alt="">
+                            <div class="banner-content text-center">
+                                <p class="banner-text mb-30">Tiz bol!<br> {{i.title}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="product-lists-top">
+                        <div class="product__filter-wrap">
+                            
+                        </div>
+                    </div>
+                    <div class="tab-content" id="productGridTabContent">
+                        <div class="tab-pane fade  show active" id="FourCol" role="tabpanel"
+                            aria-labelledby="FourCol-tab">
+                            <div class="tp-wrapper">
+                                <div class="row g-0">
+                                    {% for i in ad %}
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product__item product__item-d">
+                                            <div class="product__thumb fix">
+                                                <div class="product-image w-img">
+                                                    <a href="#">
+                                                        <img src="{{i.image.url}}" alt="product">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="product__content-3">
+                                                <h6><a href="{% url 'ad_detail' i.id %}">{{i.name}}</a></h6>
+
+                                                <div class="price mb-10">
+                                                    <span>{{i.price}}TMT</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tp-pagination text-center">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="basic-pagination pt-30 pb-30">
+                                    <nav>
+                                        {% if product.has_other_pages %}
+                                        <ul>
+                                        <!-- {% if product.has_previous %}
+                                        <li><a 
+                                                href="?page={{product.previous_page_number}}">Преведущий</a></li>
+                                        {% else %}
+                                        <li ><a  href="#">Преведущий</a></li>
+                                        {% endif %} -->
+
+
+                                        {% for i in product.paginator.page_range %}
+                                        {% if product.number == i %}
+                                        <li ><a  href="#">{{i}}</a></li>
+                                        {% else %}
+                                        <li ><a  href="?page={{i}}">{{i}}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+
+
+                                        <!-- {% if product.has_next %}
+                                        <li ><a 
+                                                href="?page={{product.next_page_number}}">Следующий</a></li>
+                                        {% else %}
+                                        <li ><a  href="#">Следующий</a></li>
+
+                                        {% endif %} -->
+                                        </ul>
+                                        {% endif %}
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shop-area-end -->
+
+
+
+</main>
+
+{% endblock %}

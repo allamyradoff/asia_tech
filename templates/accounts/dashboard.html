@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-<section class="section-conten padding-y bg" style="margin-top: 1%;">
+<section class="section-conten padding-y bg" style="margin-top: 1%; margin-bottom: 1%;">
 
 
 
@@ -15,7 +15,7 @@
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Вы вошли как:</strong>
+                        <strong class="d-inline-block mr-3">Siz şeýle girdiňiz:</strong>
                         <span>{{request.user.first_name}}</span>
                     </header>
                     <div class="card-body">
@@ -24,10 +24,10 @@
                                 <div class="card" style="text-align: center;">
                                     <div class="card-body">
                                         <h5 class="card-title">
-                                            Всего заказов
+                                            Jemi sargytlar
                                         </h5>
                                         <h4>{{orders_count}}</h4>
-                                        <a href="">Просмотры заказов</a>
+                                        <a href="">Sargyt görnüşleri</a>
                                     </div>
                                 </div>
                             </div>

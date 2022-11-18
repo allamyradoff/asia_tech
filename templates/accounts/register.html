@@ -12,19 +12,19 @@
         <article class="card-body">
             {% include 'include/alert.html' %}
             <header class="mb-4">
-                <h4 class="card-title">Регистрация</h4>
+                <h4 class="card-title">Täze akkaunt döretmek</h4>
             </header>
 
             <form action="{% url 'register'%}" method='POST'>
 
                 {% csrf_token %}
                 {{form.as_p}}
-                <button class="tp-in-btn w-100" type="submit">Регистрация</button>
+                <button class="tp-in-btn w-100" type="submit">Döret</button>
             </form>
         </article><!-- card-body.// -->
     </div> <!-- card .// -->
-    <p class="text-center mt-4">Иметь аккаунт ? <a href="{% url 'login' %}">
-        Авторизоваться</a></p>
+    <p class="text-center mt-4">Akkaundynyňz eýýam barmy ? <a href="{% url 'login' %}">
+        Giriş</a></p>
     <br><br>
     <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
 

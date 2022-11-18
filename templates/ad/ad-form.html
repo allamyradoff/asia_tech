@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-<section class="section-conten padding-y bg">
+<section class="section-conten padding-y bg" style="margin-top: 1%; margin-bottom: 1%;">
 
 
 
@@ -19,54 +19,78 @@
                     </header>
                     <div class="card-body">
                         <div>
-                            <img src="{{userprofile.profile_avatar.url}}" alt="" width="100", style="border-radius: 50px;">
+                            <img src="{{userprofile.profile_avatar.url}}" alt="" width="100" ,
+                                style="border-radius: 50px;">
                         </div>
                         <div class="row">
-                            
+
                             <div class="col-md-12">
-                               <form action="{% url 'added_ad_product' %}" method="POST" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                {{form.as_p}}
+                                <form action="{% url 'added_ad_product' %}" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
 
-                                <!-- <div class="form-group">
-                                   {{ form.name}}
-                                </div>
-                                <div class="form-group">
-                                    {{ form.desc}}
-                                </div>
+                                    <div class="col-md-12" style="margin: 1%; display: flex;">
+                                        <div class="col-md-7">
+                                            {{form.name}}
 
-                                <div class="form-group">
-                                    {{ form.cat_id}}
-                                </div>
+                                        </div>
+                                        <div class="col-md-4" style="margin-left: 1%;">
+                                            {{form.price}}
+                                        </div>
 
-                                {{form.image}}
-                                {{form.exchange}}
-                                {{form.credit}} -->
+                                    </div>
+                                    <div class="col-md-12" style="margin: 1%;">
+                                        {{form.desc}}
 
-                                <!-- <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="" name="desc">
-                                </div>
-                                <div class="form-group">
-                                    <input type="file" class="form-control"  name="image" accept=".png, .jpg">
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-select" aria-label="Default select example">
-                                        {% for i in cat %}
-                                        <option selected name="cat_id">{{i.name}}</option>
-                                        
-                                        {% endfor %}
-                                    </select>
+                                    </div>
+                                    <label for="">
+                                        <h3 style="text-align: center;"> Выберите изображение продукта</h3>
+                                    </label>
+                                    <div class="col-md-12"
+                                        style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 1%;">
+                                        <div class="col-md-3" style="margin-top: 1%;">
+                                            {{form.image}}
+                                        </div>
+                                        <div class="col-md-3" style="margin-top: 1%;">
+                                            {{form.image_2}}
+                                        </div>
+                                        <div class="col-md-3" style="margin-top: 1%;">
+                                            {{form.image_3}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" style="display: flex;">
+                                        {{form.exchange}}
+                                        <p style="margin-left: 2%;">Обмен</p>
+                                    </div>
+                                    <div class="col-md-2" style="display: flex;">
+                                        {{form.credit}}
+                                        <p style="margin-left: 2%;">Кредит</p>
+                                    </div>
+                                    {{form.phone_number}}
+                                    <div class="col-md-12" style="display: flex; flex-wrap: wrap;">
+                                        <div class="col-md-6" style="flex-wrap: wrap;">
+                                            <p style="padding-right: 20%;">Выберите категорию</p>
+                                            {{form.cat_id}}
+                                        </div>
+                                        <div class="col-md-6" style="flex-wrap: wrap;">
+                                            <p style="padding-right: 20%;">Выберите область</p>
+                                            {{form.locations}}
+                                        </div>
 
-                                </div>  -->
-                                
-                                
-                                
-                                <button type="submit" class="btn btn-primary">Save</button>
-                               </form>
+                                    </div>
+
+                                    <div class="col-md-12" style="display: flex;">
+                                    </div>
+
+
+
+
+                                    <button type="submit" class="tp-in-btn w-100"
+                                        style="margin-top: 2%;">Сохранить</button>
+                                </form>
                             </div>
                         </div>
-                    </div> 
-        </div> 
+                    </div>
+        </div>
 
         </article> <!-- order-group.// -->
         </main>

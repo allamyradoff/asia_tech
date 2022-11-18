@@ -13,36 +13,36 @@
                 <div class="col-lg-6" style="float:none;margin:auto;">
                     <div class="basic-login mb-50">
                         {% include 'include/alert.html' %}
-                        <h5>Регистрация профилья</h5>
+                        <h5>Profil döretmek</h5>
                         <form action="{% url 'register_profile' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <label for="">Изображение профилья</label>
+                            <label for="">Profil suraty</label>
                             <input type="file" name="profile_avatar" id="">
-                            <label for="">Телефонный номер</label>
+                            <label for="">Telefon belgisi</label>
                             <input type="text" name="user_name" value="{{request.user}}" id="">
                             <div class="form-group">
-                                <label for=""> Адрес</label>
+                                <label for=""> Salgysy</label>
                                 <input type="text" name="address_line_1" id="">
 
                             </div>
                             <div class="form-group">
-                                <label for=""> Адрес(запасной)</label>
+                                <label for=""> Salgysy (ätiýaçlyk)</label>
                                 <input type="text" name="address_line_2" id="">
 
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label>Область</label>
+                                    <label>Sebit</label>
                                     <input type="text" name="city" id="">
 
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label>Город</label>
+                                    <label>Şäher</label>
                                     <input type="text" name="state" id="">
 
                                 </div>
                             </div>
-                            <button type="submit" class="tp-in-btn w-100">Сохранить</button>
+                            <button type="submit" class="tp-in-btn w-100">Ýatda saklaň</button>
                         </form>
                     </div>
                 </div>

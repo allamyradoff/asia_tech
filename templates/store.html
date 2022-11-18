@@ -12,8 +12,8 @@
                     <div class="breadcrumb__wrapper">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Магазин</li>
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">Baş sahypa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Dükan</li>
                             </ol>
                         </nav>
                     </div>
@@ -29,12 +29,12 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4">
                     <div class="product-widget mb-30">
-                        <h5 class="pt-title">Категории товаров</h5>
+                        <h5 class="pt-title">Haryt kategoriýalary</h5>
                         <div class="widget-category-list mt-20">
                             <form action="#">
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="" name="cat-item">
-                                    <a href="{% url 'store' %}"><label>Все товары
+                                    <a href="{% url 'store' %}"><label>Ähli harytlar
                                             <span>({{category_count}})</span></label></a>
                                 </div>
                                 {% for i in category %}
@@ -311,7 +311,7 @@
                             {% for i in store_banner%}
                             <img class="banner-l" src="{{i.image.url}}" alt="">
                             <div class="banner-content text-center">
-                                <p class="banner-text mb-30">Hurry Up! <br> {{i.title}}</p>
+                                <p class="banner-text mb-30">Tiz bol!<br> {{i.title}}</p>
                                 <!-- <a href="shop.html" class="st-btn-d b-radius">Discover now</a> -->
                             </div>
                             {% endfor %}
@@ -349,13 +349,13 @@
                                                     <span>({{i.stock}}штук осталось)</span>
                                                 </div>
                                                 <div class="price mb-10">
-                                                    <span>{% if i.sale_price %}${{i.sale_price}} <del>{%endif%}${{i.price}}</del></span>
+                                                    <span>{% if i.sale_price %}{{i.sale_price}}TMT <del>{%endif%}{{i.price}}TMT</del></span>
                                                 </div>
                                             </div>
                                             <div class="product__add-cart-s text-center">
                                                 <a href="{% url 'add_cart' i.id %}"
                                                     class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
-                                                    Добавить в корзину
+                                                    Sebet goşuň
                                                 </a>
 
                                             </div>

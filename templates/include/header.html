@@ -129,7 +129,10 @@
                                 </select>
                             </div> -->
                             <div class="support d-none d-sm-block">
-                                <p><a href="{% url 'store' %}">Магазин</a></p>
+                                <p><a href="{% url 'store' %}">Dükan</a></p>
+                            </div>
+                            <div class="support d-none d-sm-block" style="margin-left: 1%; border: 1px solid #fff; padding: 1%;">
+                                <p><a href="{% url 'all_ads' %}">Bildirişler</a></p>
                             </div>
                         </div>
                     </div>
@@ -137,11 +140,11 @@
                         <div class="header-inner-end text-md-end">
                             <div class="ovic-menu-wrapper ovic-menu-wrapper-2">
                                 <ul>
-                                    <li><a href="about.html">О нас</a></li>
-                                    <li><a href="contact.html">Свяжитесь с нами</a></li>
+                                    <li><a href="about.html">Biz hakda</a></li>
+                                    <li><a href="contact.html">Biz bilen habarlaşyň</a></li>
                                     
-                                    <li><a href="{% url 'logout' %}">Выход</a></li>
-                                    <li><a href="tel:+99362631593">Нужна помощь? +99362631593 </a></li>
+                                    <li><a href="{% url 'logout' %}">Çykyş</a></li>
+                                    <li><a href="tel:+99362631593">Kömek gerek? +99362631593</a></li>
 
                                 </ul>
                             </div>
@@ -173,7 +176,7 @@
                             <form action="{% url 'search' %}">
                                 <div class="header__search-box header__search-cat">
                                     <input class="search-input search-input-2" type="text"
-                                        placeholder="Поиск по имени..." name="keyword">
+                                        placeholder="Ady bilen gözläň ..." name="keyword">
                                     <button class="button button-2 button-3" type="submit"><i
                                             class="far fa-search"></i></button>
                                 </div>
@@ -189,8 +192,8 @@
                                 <a class="icon-link icon-link-2" href="{% url 'register' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
-                                        <span class="sub"> Добро пожаловать!</span>
-                                        Регистрация </span>
+                                        <span class="sub"> Hoş geldiňiz!</span>
+                                        Täze akk döret </span>
                                 </a>
                             </div>
                             {% else %}
@@ -198,8 +201,8 @@
                                 <a class="icon-link icon-link-2" href="{% url 'dashboard' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
-                                        <span class="sub">Добро пожаловать! {{user.first_name}} </span>
-                                        Мой профиль </span>
+                                        <span class="sub">Hoş geldiňiz! {{user.first_name}} </span>
+                                        Meniň profilim </span>
                                 </a>
                             </div>
                             {% endif %}
@@ -207,16 +210,16 @@
                                 <a class="icon-link icon-link-2" href="{% url 'store' %}">
                                     <i class="fas fa-store-alt"></i>
                                     <span class="text">
-                                        <span class="sub">Магазин</span>
+                                        <span class="sub">Dükan</span>
                                         Asia Tek </span>
                                 </a>
                             </div>
                             <div class="block-cart action">
                                 <a class="icon-link icon-link-2" href="{% url 'cart'  %}">
                                     <i class="flaticon-shopping-bag"></i>
-                                    <span class="count count-2">{{cart_count}}</span>
+                                    <span class="count count-2">{{cart_items_count}}</span>
                                     <span class="text">
-                                        <span class="sub">Ваша корзина:
+                                        <span class="sub">Söwda sebediňiz:
                                 </a>
 
 
