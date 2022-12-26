@@ -39,8 +39,8 @@
                                 </div>
                                 {% for i in cat_ad %}
                                 <div class="single-widget-category">
-                                    <input type="checkbox" id="{{i.id}} name="cat-item">
-                                    <a href="{% url 'store' i.id %}"><label for="{{i.id}}">{{i.name}}
+                                    <input type="checkbox" id="{{i.id}}" name="cat-item">
+                                    <a href="{% url 'store' i.id %}"><label>{{i.name}}
                                             <span>({{i.ad_count}})</span></label></a>
                                 </div>
                                 {% endfor %}
@@ -52,8 +52,8 @@
                 <div class="col-xl-9 col-lg-8">
                     <div class="shop-banner mb-30">
                         <div class="banner-image">
-                            {% for i in store_banner%}
-                            <img class="banner-l" src="{{i.image.url}}" alt="">
+                            {% for i in store_banner %}
+                            <img class="banner-l" src="{{i.image.url}}" alt="{{i.image.url}}">
                             <div class="banner-content text-center">
                                 <p class="banner-text mb-30">Tiz bol!<br> {{i.title}}</p>
                             </div>

@@ -337,19 +337,16 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            {% if i.sale_percent%}
                                             <div class="product__offer">
-                                                <span class="discount">-{{i.sale_percent}}%</span>
+                                            
+                                                <span class="discount">{% if i.sale_percent%}-{{i.sale_percent}}%{% endif %}</span>
+                                            
                                             </div>
-                                            {% endif %}
                                             <div class="product__content-3">
-                                                <h6><a href="product-details.html">{{i.name}}</a></h6>
-                                                <div class="rating mb-5">
-
-                                                    <span>({{i.stock}}штук осталось)</span>
-                                                </div>
+                                                <h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
+                                                
                                                 <div class="price mb-10">
-                                                    <span>{% if i.sale_price %}{{i.sale_price}}TMT <del>{%endif%}{{i.price}}TMT</del></span>
+                                                    <span style="color:#36c069 ;">{% if i.sale_price %}{{i.sale_price}} TMT <del style="color:red;">{%endif%}{{i.get_price}} TMT</del></span>
                                                 </div>
                                             </div>
                                             <div class="product__add-cart-s text-center">

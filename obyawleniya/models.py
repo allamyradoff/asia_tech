@@ -27,9 +27,9 @@ class Locations(models.Model):
 class Ad(models.Model):
     name = models.CharField(max_length=255)
     desc = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='ad/', blank=True, null=True)
-    image_2 = models.ImageField(upload_to='ad/', blank=True, null=True)
-    image_3 = models.ImageField(upload_to='ad/', blank=True, null=True)
+    image = models.ImageField(upload_to='ad_test/', blank=True, null=True)
+    image_2 = models.ImageField(upload_to='ad_test/', blank=True, null=True)
+    image_3 = models.ImageField(upload_to='ad_test/', blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     exchange = models.BooleanField(default=False)

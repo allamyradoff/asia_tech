@@ -12,6 +12,7 @@ from django.db.models import Count
 from accounts.models import UserProfile
 from orders.models import OrderProduct
 from carts.models import CartItem, Cart
+# from carts.views import _cart_id
 
 
 def home(request):
@@ -33,9 +34,26 @@ def home(request):
     mini_slider = MiniSlider.objects.all()
     logo = Logo.objects.all()
 
-    if request.user.is_authenticated:
-        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
-        cart_items_count = cart_items.count()
+    # if request.user.is_authenticated:
+    #     cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+
+
+    # try:
+    #     if request.user.is_authenticated:
+    #         cart_items = CartItem.objects.filter(
+    #             user=request.user, is_active=True)
+
+    #     else:
+    #         cart = Cart.objects.get(cart_id=_cart_id(request))
+    #         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+
+    # except ObjectDoesNotExist:
+    #     pass
+
+    
+
+
+
 
     context = {
         'product': product,
@@ -48,7 +66,8 @@ def home(request):
         'top_mini_product_2': top_mini_product_2,
         'vip_ad': vip_ad,
         'last_product': last_product,
-        'logo':logo,
+        'logo': logo,
+        # 'cart_items': cart_items,
     }
     return render(request, 'home.html', context)
 
@@ -60,22 +79,17 @@ def all_product(request):
     store_banner = StoreBanner.objects.all()
     logo = Logo.objects.all()
 
-
     paginator = Paginator(all_products, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
     print(paged_products)
-
-
-
-
 
     context = {
         'product': paged_products,
         'category': category,
         'category_count': category_count,
         'store_banner': store_banner,
-        'logo':logo
+        'logo': logo
 
     }
 
@@ -91,7 +105,6 @@ def store(request, id):
     store_banner = StoreBanner.objects.all()
     logo = Logo.objects.all()
 
-
     paginator = Paginator(product, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
@@ -101,7 +114,7 @@ def store(request, id):
         'category': category,
         'category_count': category_count,
         'store_banner': store_banner,
-        'logo':logo
+        'logo': logo
 
     }
     return render(request, 'store.html', context)
@@ -137,7 +150,7 @@ def product_detail(request, category_id, id):
         'reviews': reviews,
         'profile': profile,
         'reviews_count': reviews_count,
-        'logo':logo
+        'logo': logo
 
 
     }

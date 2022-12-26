@@ -103,7 +103,7 @@
                         </div> -->
                         <div class="price mb-10">
                             <span>{% if product.sale_price %}{{product.sale_price}}TMT
-                                <del>{%endif%}{{product.price}}TMT</del></span>
+                                <del>{%endif%}{{product.get_price}}TMT</del></span>
                         </div>
 
                         <div class="product-stock mb-20">

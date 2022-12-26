@@ -95,7 +95,7 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile-d st-titile-d-2">Günüň iň gowy geleşikleri</h5>
+							<h5 class="st-titile-d st-titile-d-2">MEGA AKSIÝADAKY HARYTLAR</h5>
 						</div>
 						<div class="offer-time">
 							<span class="offer-title d-none d-sm-block">Tiz bol! Teklip gutarýar:</span>
@@ -162,7 +162,7 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile">Iň meşhur önümler</h5>
+							<h5 class="st-titile">IŇ MEŞHUR HARYTLAR</h5>
 						</div>
 						<div class="button-wrap button-wrap-2">
 							<a href="{% url 'store' %}">Ähli harytlar <i class="fal fa-chevron-right"></i></a>
@@ -186,12 +186,9 @@
 							<div class="col-md-6">
 								<div class="product__content product__content-d product__content-d-2">
 									<h6>{{top_product.product.name}}</h6>
-									<div class="rating mb-5">
-										
-										<span>({{top_product.product.stock}}штук осталось)</span>
-									</div>
+									
 									<div class="price d-price mb-10">
-										<span> {{top_product.product.sale_price}} TMT<del> {{top_product.product.price}} TMT</del></span>
+										<span> {{top_product.product.sale_price}} TMT<del> {{top_product.product.get_price}} TMT</del></span>
 									</div>
 									<div class="features-des mb-25">
 										<ul>
@@ -210,7 +207,7 @@
 										</ul>
 									</div>
 									<div class="cart-option">
-										<a href="{% url 'add_cart' top_product.product.id %}" class="cart-btn-4 w-100 mr-10">Добавить в корзину</a>
+										<a href="{% url 'add_cart' top_product.product.id %}" class="cart-btn-4 w-100 mr-10">Sebede goş</a>
 									</div>
 								</div>
 							</div>
@@ -231,21 +228,21 @@
 												</div>
 												{% if i.sale_percent%}
 												<div class="product__offer">
-													<span class="discount">-{{i.sale_percent}}%</span>
+													<span class="discount" style="background-color: red;">-{{i.sale_percent}}%</span>
 												</div>
 												{% endif %}
 											</div>
 										</div>
 										<div class="col-6">
 											<div class="product__content product__content-d product__content-d-2">
-												<h6><a href="product-details.html">{{i.product.name}}</a></h6>
+												<h6><a href="{% url 'product_detail' i.product.id  i.product.category.id %}">{{i.product.name}}</a></h6>
 												<div class="rating mb-5">
 													
-													<span>({{i.product.stock}}штук осталось)</span>
+													<span>({{i.product.stock}}ştuk  galdy)</span>
 												</div>
 												<div class="price d-price">
 													
-													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT <del>{% endif %} {{i.product.price}} TMT</del></span>
+													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT <del>{% endif %} {{i.product.get_price}} TMT</del></span>
 													
 												</div>
 											</div>
@@ -269,7 +266,7 @@
 												</div>
 												{% if i.product.sale_percent%}
 												<div class="product__offer">
-													<span class="discount">-{{i.product.sale_percent}}%</span>
+													<span class="discount" style="background-color: red;">-{{i.product.sale_percent}}%</span>
 												</div>
 												{% endif %}
 											</div>
@@ -277,13 +274,10 @@
 										<div class="col-6">
 											<div class="product__content product__content-d product__content-d-2">
 												<h6><a href="product-details.html">{{i.product.name}}</a></h6>
-												<div class="rating mb-5">
-													
-													<span>({{i.product.stock}}ştuk galanlar)</span>
-												</div>
+												
 												<div class="price d-price">
 													
-													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT  <del>{% endif %} {{i.product.price}} TMT</del></span>
+													<span>{% if i.product.sale_price %}{{i.product.sale_price}} TMT  <del>{% endif %} {{i.product.get_price}} TMT</del></span>
 													
 												</div>
 											</div>
@@ -347,7 +341,7 @@
 				<div class="col-xl-12">
 					<div class="section__head d-flex justify-content-between mb-30">
 						<div class="section__title section__title-2">
-							<h5 class="st-titile">Iň soňky goşulan önümler</h5>
+							<h5 class="st-titile">IŇ TÄZE HARYTLAR</h5>
 						</div>
 						<div class="button-wrap button-wrap-2">
 							<a href="{% url 'store' %}">Ähli harytlar <i class="fal fa-chevron-right"></i></a>
@@ -367,25 +361,22 @@
 							</div>
 							{% if i.sale_percent%}
 								<div class="product__offer">
-									<span class="discount">-{{i.sale_percent}}%</span>
+									<span class="discount" style="background-color: red;">-{{i.sale_percent}}%</span>
 								</div>
 							{% endif %}
 							
 						</div>
 						<div class="product__content product__content-2">
 							<h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
-							<div class="rating mb-5 mt-10">
-								
-								<span>({{top_product.product.stock}}ştuk galanlar)</span>
-							</div>
+							
 							<div class="price">
-								<span >{% if i.sale_price %} {{i.sale_price}} TMT<del>{% endif %} {{i.price}} TMT</del></span>
+								<span >{% if i.sale_price %} {{i.sale_price}} TMT<del>{% endif %} {{i.get_price}} TMT</del></span>
 							</div>
 						</div>
 						<div class="product__add-cart text-center">
 							<a href="{% url 'add_cart' i.id %}"
 								class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
-								Add to Cart
+								Sebede goş
 						</a>
 						</div>
 					</div>
@@ -775,10 +766,9 @@
 			<div class="ovic-running">
 				<div class="wrap">
 					<div class="inner">
-						<p class="item">Free UK Delivery - Return Over TMT 100.00 ( Excluding Homeware ) | Free UK Collect
-							From Store</p>
-						<p class="item">Design Week / 15% Off the website / Code: AYOSALE-2020</p>
-						<p class="item">Always iconic. Now organic. Introducing the TMT 20 Organic Tee.</p>
+					    <p class="item">TÄZE TEHNOLOGIÝA - TÄZEÇE GARAÝYŞ</p>
+<!--                         <p class="item">Design Week / 15% Off the website / Code: AYOSALE-2020</p>
+<p class="item">Always iconic. Now organic. Introducing the TMT 20 Organic Tee.</p> -->
 					</div>
 				</div>
 			</div>

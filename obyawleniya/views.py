@@ -6,7 +6,6 @@ from banner.models import Logo
 
 
 
-
 def added_ad_product(request):
     cat = CategoryAd.objects.all()
     logo = Logo.objects.all()

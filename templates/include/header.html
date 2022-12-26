@@ -131,7 +131,8 @@
                             <div class="support d-none d-sm-block">
                                 <p><a href="{% url 'store' %}">Dükan</a></p>
                             </div>
-                            <div class="support d-none d-sm-block" style="margin-left: 1%; border: 1px solid #fff; padding: 1%;">
+                            <div class="support d-none d-sm-block"
+                                style="margin-left: 1%; border: 1px solid #fff; padding: 1%;">
                                 <p><a href="{% url 'all_ads' %}">Bildirişler</a></p>
                             </div>
                         </div>
@@ -142,7 +143,7 @@
                                 <ul>
                                     <li><a href="about.html">Biz hakda</a></li>
                                     <li><a href="contact.html">Biz bilen habarlaşyň</a></li>
-                                    
+
                                     <li><a href="{% url 'logout' %}">Çykyş</a></li>
                                     <li><a href="tel:+99362631593">Kömek gerek? +99362631593</a></li>
 
@@ -171,24 +172,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-lg-4 d-none d-lg-block">
-                        <div class="header__search">
-                            <form action="{% url 'search' %}">
-                                <div class="header__search-box header__search-cat">
-                                    <input class="search-input search-input-2" type="text"
-                                        placeholder="Ady bilen gözläň ..." name="keyword">
-                                    <button class="button button-2 button-3" type="submit"><i
-                                            class="far fa-search"></i></button>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
+                   
                     <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
                         <div class="header-action">
                             {% if user.id is None %}
-                            <div class="block-userlink">
+                            <div class="block-userlink" style="margin-left: 5%;">
                                 <a class="icon-link icon-link-2" href="{% url 'register' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
@@ -197,7 +185,7 @@
                                 </a>
                             </div>
                             {% else %}
-                            <div class="block-userlink">
+                            <div class="block-userlink" style="margin-left: 5%;">
                                 <a class="icon-link icon-link-2" href="{% url 'dashboard' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
@@ -206,18 +194,26 @@
                                 </a>
                             </div>
                             {% endif %}
-                            <div class="block-wishlist action">
+                            <div class="block-wishlist action" style="margin-left: 5%;">
                                 <a class="icon-link icon-link-2" href="{% url 'store' %}">
                                     <i class="fas fa-store-alt"></i>
                                     <span class="text">
                                         <span class="sub">Dükan</span>
-                                        Asia Tek </span>
+                                        AsiaTek </span>
                                 </a>
                             </div>
-                            <div class="block-cart action">
+                            <div class="block-wishlist action" style="margin-left: 5%;">
+                                <a class="icon-link icon-link-2" href="{% url 'all_ads' %}">
+                                    <i class="fas fa-bullhorn"></i>
+                                    <span class="text">
+                                        <span class="sub">Bildirişler</span>
+                                        </span>
+                                </a>
+                            </div>
+                            <div class="block-cart action" style="margin-left: 5%;">
                                 <a class="icon-link icon-link-2" href="{% url 'cart'  %}">
                                     <i class="flaticon-shopping-bag"></i>
-                                    <span class="count count-2">{{cart_items_count}}</span>
+                                    <span class="count count-2">{{cart_items|length}}</span>
                                     <span class="text">
                                         <span class="sub">Söwda sebediňiz:
                                 </a>
@@ -337,62 +333,31 @@
             </button>
         </div>
         <div class="offcanvas__content">
-            <div class="offcanvas__logo mb-40">
+            <!-- <div class="offcanvas__logo mb-40">
                 <a href="index.html">
                     <img src="{% static 'assets/img/logo/logo-white.png' %}" alt="logo">
                 </a>
-            </div>
+            </div> -->
             <div class="offcanvas__search mb-25">
                 <form action="#">
-                    <input type="text" placeholder="What are you searching for?">
+                    <input type="text" placeholder="Gözleg etmek üçin harydyň ady">
                     <button type="submit"><i class="far fa-search"></i></button>
                 </form>
             </div>
             <div class="sidebar__img mb-20">
                 <div class="row gx-2">
+                    {% for i in category %}
                     <div class="col-4">
                         <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-1.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-1.jpg' %}" alt="">
+                            <a class="popup-image" href="{% url 'store' i.id %}">
+                                {% if i.image %}
+                                <img src="{{i.image.url}}" alt="">
+                                {% endif %}
                             </a>
-                            <a href="" style="color: #000;">Aksesuarlar telefon uchin </a>
+                            <a href="" style="color: #000; font-size: 10px;">{{i.name}} </a>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-2.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-2.jpg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-3.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-3.jpg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-4.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-4.jpg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-5.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-5.jpg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="sidebar__single-img hover-effect w-img mb-10">
-                            <a class="popup-image" href="{% static 'assets/img/gallery/gal-6.jpg' %}">
-                                <img src="{% static 'assets/img/gallery/gal-6.jpg' %}" alt="">
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="mobile-menu-2"></div>

@@ -39,7 +39,7 @@
                                 </button>
                             </li>
                             {% endif %}
-                            {% if ad.image_1 %}
+                            {% if ad.image_2 %}
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="thumbTwo-tab" data-bs-toggle="tab"
                                     data-bs-target="#thumbTwo" type="button" role="tab" aria-controls="thumbTwo"
@@ -79,7 +79,7 @@
                                 <div class="tab-pane fade" id="thumbThree" role="tabpanel"
                                     aria-labelledby="thumbThree-tab">
                                     <div class="product__details-nav-thumb w-img">
-                                        <img src="{{product.image_3.url}}" style="max-width: 600px;" alt="">
+                                        <img src="{{ad.image_3.url}}" style="max-width: 600px;" alt="">
                                     </div>
                                 </div>
                                 {% endif %}
@@ -102,14 +102,10 @@
 
                         <div class="product-tag-area mt-15">
                             <div class="product_info">
-                                <span class="sku_wrapper">
-                                    <span class="title">Barkod:</span>
-                                    <span class="sku">DK1002</span>
-                                </span>
+                                
                                 <span class="posted_in">
                                     <span class="title">Kategoriýa:</span>
-                                    <a href="#">iPhone</a>
-                                    <a href="#">Tablets</a>
+                                    <a href="#">{{ad.cat_id.name}}</a>
                                 </span>
 
                             </div>
@@ -132,11 +128,7 @@
                                 </button>
                             </li>
 
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                                    type="button" role="tab" aria-controls="review" aria-selected="false">Synlar ({{reviews_count}})
-                                </button>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -144,8 +136,7 @@
             <div class="tab-content" id="prodductDesTaContent">
                 <div class="tab-pane fade active show" id="des" role="tabpanel" aria-labelledby="des-tab">
                     <div class="product__details-des-wrapper">
-                        <p class="des-text mb-35">{{ad.desc}}</p>
-                       
+                        <p class="des-text mb-35">{{ad.desc}}</p>                   
 
 
 
