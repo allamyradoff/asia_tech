@@ -13,6 +13,7 @@ from accounts.models import UserProfile
 from orders.models import OrderProduct
 from carts.models import CartItem, Cart
 from carts.views import _cart_id
+from obyawleniya.models import CategoryAd
 
 
 def home(request):
@@ -53,7 +54,7 @@ def home(request):
     #     pass
 
     
-
+    ads_cat = CategoryAd.objects.all()
 
 
 
@@ -70,6 +71,7 @@ def home(request):
         'last_product': last_product,
         'logo': logo,
         'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
     return render(request, 'home.html', context)
 

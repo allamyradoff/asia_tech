@@ -3,6 +3,7 @@ from accounts.models import Account
 
 class CategoryAd(models.Model):
     name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='category_ads/', blank=True, null=True)
 
 
     def ad_count(self):

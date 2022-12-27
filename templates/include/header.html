@@ -279,32 +279,30 @@
                     </div>
                 </ul>
             </li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="shop.html">Shop <i class="far fa-angle-down"></i></a>
+            <li><a href="shop.html">Bildirişler <i class="far fa-angle-down"></i></a>
                 <ul class="submenu">
-                    <li><a href="shop.html">shop</a></li>
-                    <li><a href="shop-details.html">Shop Details</a></li>
+                    <div class="sidebar__img mb-20">
+                        <div class="row gx-2">
+                            {% for i in ads_cat %}
+                            <div class="col-3">
+                                <div class="sidebar__single-img hover-effect w-img mb-10">
+                                    <a class="popup-image" href="{% url 'store' i.id %}">
+                                        {% if i.image %}
+                                        <img src="{{i.image.url}}" alt="">
+                                        {% endif %}
+                                    </a>
+                                    <a href="" style="color: #000; font-size: 10px;">{{i.name}} </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </ul>
             </li>
-            <li><a href="blog.html">Blog <i class="far fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
-                </ul>
+            <li><a href="blog.html">Biz barada <i class="far fa-angle-down"></i></a>
+                
             </li>
-            <li>
-                <a href="about.html">Pages <i class="far fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="my-account.html">My Account</a></li>
-                    <li><a href="product-details.html">Product Details</a></li>
-                    <li><a href="faq.html">FAQs pages</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href="wishlist.html">Wishlist</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="404.html">404 Error</a></li>
-                </ul>
-            </li>
+            
         </ul>
     </nav>
 </div>

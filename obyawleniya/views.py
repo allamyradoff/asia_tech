@@ -11,7 +11,6 @@ def added_ad_product(request):
     logo = Logo.objects.all()
 
     if request.method == 'POST':
-        print('ok')
         form = AdForm(request.POST, request.FILES)
         if form.is_valid():
             form = form.save()
