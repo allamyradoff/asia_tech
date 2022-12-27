@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from banner.models import Cartbanner
 from banner.models import CheckoutBanner, Logo
+from obyawleniya.models import CategoryAd
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -67,6 +68,12 @@ def add_cart(request, product_id,):
 def cart(request, total=0, quantity=0, cart_items=None):
     cart_banner = Cartbanner.objects.all()
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
 
     try:
@@ -90,7 +97,9 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'quantity': quantity,
         'cart_items': cart_items,
         'cart_banner':cart_banner,
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
     return render(request, 'cart/cart.html', context)
 
@@ -127,6 +136,12 @@ def remove_cart_item(request, product_id, cart_item_id):
 def checkout(request, total=0, quantity=0, cart_items=None):
     checkout_banner = CheckoutBanner.objects.all()
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
 
     try:
@@ -144,6 +159,8 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         'quantity': quantity,
         'cart_items': cart_items,
         'checkout_banner':checkout_banner,
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
     return render(request, 'cart/checkout.html', context)

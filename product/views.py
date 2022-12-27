@@ -34,27 +34,14 @@ def home(request):
     slider = Slider.objects.all()
     mini_slider = MiniSlider.objects.all()
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
 
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
     else:
         cart_items = 0
 
-
-    # try:
-    #     if request.user.is_authenticated:
-    #         cart_items = CartItem.objects.filter(
-    #             user=request.user, is_active=True)
-
-    #     else:
-    #         cart = Cart.objects.get(cart_id=_cart_id(request))
-    #         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-
-    # except ObjectDoesNotExist:
-    #     pass
-
     
-    ads_cat = CategoryAd.objects.all()
 
 
 
@@ -86,14 +73,21 @@ def all_product(request):
     paginator = Paginator(all_products, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
-    print(paged_products)
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     context = {
         'product': paged_products,
         'category': category,
         'category_count': category_count,
         'store_banner': store_banner,
-        'logo': logo
+        'logo': logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
 
     }
 
@@ -113,12 +107,22 @@ def store(request, id):
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
 
+
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
+
     context = {
         'product': paged_products,
         'category': category,
         'category_count': category_count,
         'store_banner': store_banner,
-        'logo': logo
+        'logo': logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
 
     }
     return render(request, 'store.html', context)
@@ -142,6 +146,13 @@ def product_detail(request, category_id, id):
     reviews = ReviewRating.objects.filter(product_id=product.id, status=True)
     reviews_count = reviews.count()
 
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
+
     if request.user.is_authenticated:
 
         profile = UserProfile.objects.filter(user=request.user)
@@ -154,9 +165,9 @@ def product_detail(request, category_id, id):
         'reviews': reviews,
         'profile': profile,
         'reviews_count': reviews_count,
-        'logo': logo
-
-
+        'logo': logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
 
     return render(request, 'product_detail.html', context)
@@ -167,6 +178,12 @@ def search(request):
     all_products = Product.objects.all()
     category_count = all_products.count()
     store_banner = StoreBanner.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
@@ -180,6 +197,8 @@ def search(request):
         'category': category,
         'category_count': category_count,
         'store_banner': store_banner,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
 
     }
     return render(request, 'store.html', context)

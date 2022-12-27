@@ -6,6 +6,8 @@ from .models import Order, OrderProduct
 from .forms import OrderForm
 from product.models import Product
 import json
+from obyawleniya.models import CategoryAd
+from carts.views import _cart_id
 
 data_1 = []
 
@@ -111,6 +113,12 @@ def place_order(request, total=0, quantity=0):
 def order_complete(request):
     order_number_main = request.GET.get('order_number')
     print(order_number_main)
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     try:
         order = Order.objects.get(order_number=order_number_main, is_ordered=True)
@@ -120,9 +128,12 @@ def order_complete(request):
         context = {
             'order': order,
             'ordered_products': ordered_products,
-            'order_number': order.order_number
+            'order_number': order.order_number,
+            'cart_items': cart_items,
+            'ads_cat':ads_cat
         }
         return render(request, 'order_complete.html', context)
+
     except (Order.DoesNotExist):
         print('gechmedi')
         return redirect('home')

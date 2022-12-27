@@ -20,10 +20,16 @@ from carts.views import _cart_id
 from carts.models import Cart, CartItem
 from orders.models import Order, OrderProduct
 from banner.models import Logo
-
+from obyawleniya.models import CategoryAd
 
 def register(request):
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -67,13 +73,21 @@ def register(request):
 
     context = {
         'form': form,
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
     return render(request, 'accounts/register.html', context)
 
 
 def login(request):
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
 
 
@@ -112,7 +126,9 @@ def login(request):
 
 
     context = {
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
 
     return render(request, 'accounts/login.html', context)
@@ -140,6 +156,12 @@ def dashboard(request):
 
 
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     user = request.user
 
@@ -158,24 +180,42 @@ def dashboard(request):
     context = {
         'orders_count': orders_count,
         'userprofile': userprofile,
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
 
     }
     return render(request, 'accounts/dashboard.html', context)
 
 
 def my_orders(request):
+    logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
     order = Order.objects.filter(
         user_id=request.user, is_ordered=True).order_by('-created_at')
 
     context = {
-        'order': order
+        'order': order,
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
     return render(request, 'accounts/my_orders.html', context)
 
 
 def register_profile(request):
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
     user = request.user.id
     print(user)
@@ -204,7 +244,9 @@ def register_profile(request):
             return HttpResponse('ishlemedi')
 
     context = {
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
     }
 
     return render(request, 'accounts/register_profile.html', context)
@@ -213,6 +255,12 @@ def register_profile(request):
 @login_required(login_url='login')
 def edit_profile(request):
     logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
     
     userprofile = get_object_or_404(UserProfile, user=request.user)
     if request.method == "POST":
@@ -233,7 +281,9 @@ def edit_profile(request):
         'user_form': user_form,
         'profile_form': profile_form,
         'userprofile': userprofile,
-        'logo':logo
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
 
     }
     return render(request, 'accounts/edit_profile.html', context)
@@ -241,6 +291,13 @@ def edit_profile(request):
 
 @login_required(login_url='login')
 def changePassword(request):
+    logo = Logo.objects.all()
+    ads_cat = CategoryAd.objects.all()
+
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
     if request.method == "POST":
         current_password = request.POST['current_password']
         new_password = request.POST['new_password']
@@ -264,7 +321,15 @@ def changePassword(request):
         else:
             messages.error(request, 'Пароль не совпадает')
             return redirect('changePassword')
-    return render(request, 'accounts/changePassword.html')
+
+
+    context = {
+        'logo':logo,
+        'cart_items': cart_items,
+        'ads_cat':ads_cat
+
+    }
+    return render(request, 'accounts/changePassword.html', context)
 
 
 # @login_required(login_url='login')
