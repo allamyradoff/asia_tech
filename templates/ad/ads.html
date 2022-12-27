@@ -40,7 +40,7 @@
                                 {% for i in cat_ad %}
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="{{i.id}}" name="cat-item">
-                                    <a href="{% url 'store' i.id %}"><label>{{i.name}}
+                                    <a href="{% url 'ads' i.id %}"><label>{{i.name}}
                                             <span>({{i.ad_count}})</span></label></a>
                                 </div>
                                 {% endfor %}

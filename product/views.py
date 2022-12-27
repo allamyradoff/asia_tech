@@ -12,7 +12,7 @@ from django.db.models import Count
 from accounts.models import UserProfile
 from orders.models import OrderProduct
 from carts.models import CartItem, Cart
-# from carts.views import _cart_id
+from carts.views import _cart_id
 
 
 def home(request):
@@ -34,8 +34,10 @@ def home(request):
     mini_slider = MiniSlider.objects.all()
     logo = Logo.objects.all()
 
-    # if request.user.is_authenticated:
-    #     cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+    else:
+        cart_items = 0
 
 
     # try:
@@ -67,7 +69,7 @@ def home(request):
         'vip_ad': vip_ad,
         'last_product': last_product,
         'logo': logo,
-        # 'cart_items': cart_items,
+        'cart_items': cart_items,
     }
     return render(request, 'home.html', context)
 

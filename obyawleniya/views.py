@@ -55,6 +55,18 @@ def all_ads(request):
     return render(request, 'ad/ads.html', context)
 
 
+def ads(request, id):
+    ad = Ad.objects.filter(cat_id=id)
+    ad_count = ad.count()
+    cat_ad = CategoryAd.objects.all()
+
+    context = {
+        'ad':ad,
+        'cat_ad':cat_ad,
+        'ad_count':ad_count,
+    }
+    return render(request, 'ad/ads.html', context)
+
 
 def ad_detail(request, id):
     ad = Ad.objects.get(id=id)

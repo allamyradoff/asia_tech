@@ -163,38 +163,54 @@
                         <div class="header__info header__info-2">
                             <div class="logo logo-3">
                                 {% for logo in logo %}
-                                <a href="/" class="logo-image"><img src="{{logo.image.url}}" alt="logo"></a>
+                                <a href="/" class="logo-image"><img style="width: 150%;" src="{{logo.image.url}}"
+                                        alt="logo"></a>
                                 {% endfor %}
                             </div>
-                            <div class="side-menu mr-20">
+                            <div class="side-menu mr-">
                                 <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i
                                         class="fas fa-bars"></i></button>
                             </div>
                         </div>
                     </div>
-                   
+
+                    <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                        <div class="header__search">
+                            <form action="{% url 'search' %}">
+                                <div class="header__search-box header__search-cat">
+                                    <input class="search-input search-input-2" type="text"
+                                        placeholder="Ady bilen gözläň ..." name="keyword">
+                                    <button class="button button-2 button-3" type="submit"><i
+                                            class="far fa-search"></i></button>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+
                     <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
                         <div class="header-action">
                             {% if user.id is None %}
-                            <div class="block-userlink" style="margin-left: 5%;">
+                            <div class="block-userlink">
                                 <a class="icon-link icon-link-2" href="{% url 'register' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
                                         <span class="sub"> Hoş geldiňiz!</span>
-                                        Täze akk döret </span>
+                                    </span>
                                 </a>
                             </div>
                             {% else %}
-                            <div class="block-userlink" style="margin-left: 5%;">
+                            <div class="block-userlink">
                                 <a class="icon-link icon-link-2" href="{% url 'dashboard' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
-                                        <span class="sub">Hoş geldiňiz! {{user.first_name}} </span>
+                                        <span class="sub">{{user.first_name}} </span>
                                         Meniň profilim </span>
                                 </a>
                             </div>
                             {% endif %}
-                            <div class="block-wishlist action" style="margin-left: 5%;">
+                            <div class="block-wishlist action">
                                 <a class="icon-link icon-link-2" href="{% url 'store' %}">
                                     <i class="fas fa-store-alt"></i>
                                     <span class="text">
@@ -202,20 +218,16 @@
                                         AsiaTek </span>
                                 </a>
                             </div>
-                            <div class="block-wishlist action" style="margin-left: 5%;">
-                                <a class="icon-link icon-link-2" href="{% url 'all_ads' %}">
-                                    <i class="fas fa-bullhorn"></i>
-                                    <span class="text">
-                                        <span class="sub">Bildirişler</span>
-                                        </span>
-                                </a>
-                            </div>
+
                             <div class="block-cart action" style="margin-left: 5%;">
                                 <a class="icon-link icon-link-2" href="{% url 'cart'  %}">
                                     <i class="flaticon-shopping-bag"></i>
                                     <span class="count count-2">{{cart_items|length}}</span>
                                     <span class="text">
-                                        <span class="sub">Söwda sebediňiz:
+                                        <span class="sub">Sebediňiz:</span>
+
+
+                                    </span>
                                 </a>
 
 
@@ -229,13 +241,13 @@
     <div class="header__bottom d-none d-lg-block">
         <div class="container">
             <div class="box-items-inner pt-10 pb-10">
-                {% for i in category %}
+
                 <div class="box-item">
-                    <a href="{% url 'store' i.id %}"><i class="{{i.icon}}"></i>
-                        {{i.name}}
+                    <a href=""><i class=""></i>
+                        Bildirisler
                     </a>
                 </div>
-                {% endfor %}
+
             </div>
         </div>
     </div>
@@ -247,51 +259,24 @@
     <nav id="mobile-menu-2">
         <ul>
             <li>
-                <a href="index.html" class="active">Home <i class="far fa-angle-down"></i></a>
+                <a href="index.html" class="active">AsiaTek  <i class="far fa-angle-down"></i></a>
                 <ul class="megamenu-1">
-                    <li><a href="index.html">Home Pages</a>
-                        <ul class="mega-item">
-                            <li><a href="index.html">Home One</a></li>
-                            <li><a href="index-2.html">Home Two</a></li>
-                            <li><a href="index-3.html" class="active">Home Three</a></li>
-                            <li><a href="product-details.html">Shop 3 Column</a></li>
-                            <li><a href="product-details.html">Shop 4 Column</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="shop.html">Product Pages</a>
-                        <ul class="mega-item">
-                            <li><a href="product-details.html">Product Details</a></li>
-                            <li><a href="product-details.html">Product V2</a></li>
-                            <li><a href="product-details.html">Product V3</a></li>
-                            <li><a href="product-details.html">Varriable Product</a></li>
-                            <li><a href="product-details.html">External Product</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="shop.html">Other Pages</a>
-                        <ul class="mega-item">
-                            <li><a href="product-details.html">wishlist</a></li>
-                            <li><a href="product-details.html">Shopping Cart</a></li>
-                            <li><a href="product-details.html">Checkout</a></li>
-                            <li><a href="product-details.html">Login</a></li>
-                            <li><a href="product-details.html">Register</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="shop.html">Phone &amp; Tablets</a>
-                        <ul class="mega-item">
-                            <li><a href="product-details.html">Catagory 1</a></li>
-                            <li><a href="product-details.html">Catagory 2</a></li>
-                            <li><a href="product-details.html">Catagory 3</a></li>
-                            <li><a href="product-details.html">Catagory 4</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="shop.html">Phone &amp; Tablets</a>
-                        <ul class="mega-item">
-                            <li><a href="product-details.html">Catagory 1</a></li>
-                            <li><a href="product-details.html">Catagory 2</a></li>
-                            <li><a href="product-details.html">Catagory 3</a></li>
-                            <li><a href="product-details.html">Catagory 4</a></li>
-                        </ul>
-                    </li>
+                    <div class="sidebar__img mb-20">
+                        <div class="row gx-2">
+                            {% for i in category %}
+                            <div class="col-3">
+                                <div class="sidebar__single-img hover-effect w-img mb-10">
+                                    <a class="popup-image" href="{% url 'store' i.id %}">
+                                        {% if i.image %}
+                                        <img src="{{i.image.url}}" alt="">
+                                        {% endif %}
+                                    </a>
+                                    <a href="" style="color: #000; font-size: 10px;">{{i.name}} </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </ul>
             </li>
             <li><a href="about.html">About Us</a></li>
@@ -327,11 +312,7 @@
 <!-- offcanvas area start -->
 <div class="offcanvas__area">
     <div class="offcanvas__wrapper">
-        <div class="offcanvas__close">
-            <button class="offcanvas__close-btn" id="offcanvas__close-btn">
-                <i class="fal fa-times"></i>
-            </button>
-        </div>
+
         <div class="offcanvas__content">
             <!-- <div class="offcanvas__logo mb-40">
                 <a href="index.html">
@@ -344,7 +325,7 @@
                     <button type="submit"><i class="far fa-search"></i></button>
                 </form>
             </div>
-            <div class="sidebar__img mb-20">
+            <!-- <div class="sidebar__img mb-20">
                 <div class="row gx-2">
                     {% for i in category %}
                     <div class="col-4">
@@ -359,7 +340,7 @@
                     </div>
                     {% endfor %}
                 </div>
-            </div>
+            </div> -->
             <div class="mobile-menu-2"></div>
             <div class="offcanvas__action">
             </div>

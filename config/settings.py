@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from pathlib import Path
 import os
 
@@ -38,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    'django.contrib.sitemaps',
+
 
     'product',
     'accounts',
@@ -141,9 +146,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from django.contrib.messages import constants as messages
-
-
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
@@ -154,4 +156,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'allamyradoffyunus@gmail.com'
 EMAIL_HOST_PASSWORD = 'xeithztzbviwztzu'
 EMAIL_USE_TLS = True
-
