@@ -14,6 +14,7 @@ from orders.models import OrderProduct
 from carts.models import CartItem, Cart
 from carts.views import _cart_id
 from obyawleniya.models import CategoryAd
+from django.db.models import Max, Min
 
 
 def home(request):
@@ -70,15 +71,30 @@ def all_product(request):
     store_banner = StoreBanner.objects.all()
     logo = Logo.objects.all()
 
-    paginator = Paginator(all_products, 6)
-    page = request.GET.get('page')
-    paged_products = paginator.get_page(page)
-    ads_cat = CategoryAd.objects.all()
 
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
     else:
         cart_items = 0
+
+    min_price  = Product.objects.all().aggregate(Min('price'))
+    max_price  = Product.objects.all().aggregate(Max('price'))
+
+    FilterPrice = request.GET.get('FilterPrice')
+    if FilterPrice:
+        Int_FilterPrice = int(FilterPrice)
+        product = Product.objects.filter(price__lte = Int_FilterPrice)
+        print(product)
+    else:
+        product = Product.objects.all()
+
+
+    paginator = Paginator(product, 8)
+    page = request.GET.get('page')
+    paged_products = paginator.get_page(page)
+    ads_cat = CategoryAd.objects.all()
+
+    
 
     context = {
         'product': paged_products,
@@ -87,7 +103,10 @@ def all_product(request):
         'store_banner': store_banner,
         'logo': logo,
         'cart_items': cart_items,
-        'ads_cat':ads_cat
+        'ads_cat':ads_cat,
+        'min_price': min_price,
+        'max_price': max_price,
+        'FilterPrice':FilterPrice,
 
     }
 
@@ -102,6 +121,18 @@ def store(request, id):
     category_count = all_products.count()
     store_banner = StoreBanner.objects.all()
     logo = Logo.objects.all()
+
+
+    min_price  = product.aggregate(Min('price'))
+    max_price  = product.aggregate(Max('price'))
+
+    FilterPrice = request.GET.get('FilterPrice')
+    if FilterPrice:
+        Int_FilterPrice = int(FilterPrice)
+        product = product.filter(price__lte = Int_FilterPrice)
+        print(product)
+    else:
+        product = product
 
     paginator = Paginator(product, 6)
     page = request.GET.get('page')
@@ -122,7 +153,10 @@ def store(request, id):
         'store_banner': store_banner,
         'logo': logo,
         'cart_items': cart_items,
-        'ads_cat':ads_cat
+        'ads_cat':ads_cat,
+        'min_price': min_price,
+        'max_price': max_price,
+        'FilterPrice':FilterPrice,
 
     }
     return render(request, 'store.html', context)
@@ -179,6 +213,8 @@ def search(request):
     category_count = all_products.count()
     store_banner = StoreBanner.objects.all()
     ads_cat = CategoryAd.objects.all()
+    logo = Logo.objects.all()
+
 
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
@@ -198,7 +234,8 @@ def search(request):
         'category_count': category_count,
         'store_banner': store_banner,
         'cart_items': cart_items,
-        'ads_cat':ads_cat
+        'ads_cat':ads_cat,
+        'logo':logo
 
     }
     return render(request, 'store.html', context)
@@ -226,5 +263,5 @@ def submit_review(request, product_id):
                 data.user_id = request.user.id
                 data.save()
 
-                messages.success(request, 'Спасиба за ваш отзый')
+                messages.success(request, 'Спасиба за ваш отзыв')
                 return redirect(url)
