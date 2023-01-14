@@ -21,7 +21,7 @@ def home(request):
     product = Product.objects.filter(is_active=True)
     category = Category.objects.all()
     product_sale = Product.objects.filter(is_active=True, is_sale=True)
-
+    
     top_product = TopProduct.objects.all()
     top_product = top_product[0]
     top_mini_product_all = TopMiniProduct.objects.all()
@@ -65,26 +65,41 @@ def home(request):
 
 
 def all_product(request):
+
+    list_cource = []
+
     all_products = Product.objects.order_by('-id')
     category_count = all_products.count()
     category = Category.objects.all()
     store_banner = StoreBanner.objects.all()
     logo = Logo.objects.all()
+    cource = Cours.objects.last()
+    cource = cource.cours
 
+
+    for cources in all_products:
+        cources = int(cources.price * cource)
+        list_cource.append(cources)
+
+
+    print(list_cource)
 
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
     else:
         cart_items = 0
 
-    min_price  = Product.objects.all().aggregate(Min('price'))
-    max_price  = Product.objects.all().aggregate(Max('price'))
+    cours = Cours.objects.last()
+
+    min_price  = Product.objects.all().aggregate(Min('cource_price'))
+    max_price  = Product.objects.all().aggregate(Max('cource_price'))
+
 
     FilterPrice = request.GET.get('FilterPrice')
     if FilterPrice:
         Int_FilterPrice = int(FilterPrice)
-        product = Product.objects.filter(price__lte = Int_FilterPrice)
-        print(product)
+        product = Product.objects.filter(cource_price__lte = Int_FilterPrice)
+        print()
     else:
         product = Product.objects.all()
 
@@ -92,6 +107,7 @@ def all_product(request):
     paginator = Paginator(product, 8)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
+    
     ads_cat = CategoryAd.objects.all()
 
     
@@ -123,13 +139,16 @@ def store(request, id):
     logo = Logo.objects.all()
 
 
-    min_price  = product.aggregate(Min('price'))
-    max_price  = product.aggregate(Max('price'))
+    min_price  = Product.objects.filter(category=id, is_active=True).aggregate(Min('cource_price'))
+    max_price  = Product.objects.filter(category=id, is_active=True).aggregate(Max('cource_price'))
+
+
 
     FilterPrice = request.GET.get('FilterPrice')
+
     if FilterPrice:
         Int_FilterPrice = int(FilterPrice)
-        product = product.filter(price__lte = Int_FilterPrice)
+        product = Product.objects.filter(category=id, is_active=True, cource_price__lte = Int_FilterPrice)
         print(product)
     else:
         product = product
@@ -137,7 +156,7 @@ def store(request, id):
     paginator = Paginator(product, 6)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
-
+    current_id = id
 
     ads_cat = CategoryAd.objects.all()
 
@@ -157,6 +176,7 @@ def store(request, id):
         'min_price': min_price,
         'max_price': max_price,
         'FilterPrice':FilterPrice,
+        'current_id':current_id
 
     }
     return render(request, 'store.html', context)
@@ -230,9 +250,9 @@ def search(request):
     context = {
         'product': product,
         'product_count': product_count,
-        'category': category,
+        # 'category': category,
         'category_count': category_count,
-        'store_banner': store_banner,
+        # 'store_banner': store_banner,
         'cart_items': cart_items,
         'ads_cat':ads_cat,
         'logo':logo
@@ -249,7 +269,7 @@ def submit_review(request, product_id):
                 user__id=request.user.id, product__id=product_id)
             form = ReviewForm(request.POST, instance=review)
             form.save()
-            messages.success(request, "Спасиба за отзыв, Ваш отзый обнавлен")
+            messages.success(request, "Syn edeniňiz üçin sag boluň, synyňyz täzelendi.")
             return redirect(url)
 
         except ReviewRating.DoesNotExist:
@@ -263,5 +283,5 @@ def submit_review(request, product_id):
                 data.user_id = request.user.id
                 data.save()
 
-                messages.success(request, 'Спасиба за ваш отзыв')
+                messages.success(request, 'Syn edeniňiz üçin sag boluň')
                 return redirect(url)

@@ -42,8 +42,8 @@ class Product(models.Model):
     sale_price = models.CharField(max_length=255, blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
-
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    cource_price = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -52,6 +52,14 @@ class Product(models.Model):
         course = Cours.objects.latest('id')
         price = self.price * course.cours
         return price
+
+    def save(self, *args, **kwargs):
+        course = Cours.objects.latest('id')
+        price = self.price * course.cours
+        self.cource_price = price
+
+        super(Product, self).save(*args, **kwargs)
+
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.id, self.category.id])

@@ -21,10 +21,9 @@
                             {% csrf_token %}
                             <label for="name">Telefon belgisini giriziň  <span>*</span></label>
                             <input  type="text"  name="phone_number">
-                            <label for="pass">Пароль <span>*</span></label>
+                            <label for="pass">Parolyňyzy giriziň <span>*</span></label>
                             <input  type="password"  name="password">
                             
-                            {% comment %} <a href="login.html" class="tp-in-btn w-100">log in</a> {% endcomment %}
                             <button type="submit" class="tp-in-btn w-100"> Girmek </button>
                         </form>
                         <a href="{% url 'register' %}" style="margin-top:2%" class="tp-in-btn w-100"> Täze akkaunt döret </a>

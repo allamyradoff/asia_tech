@@ -18,7 +18,18 @@
             <form action="{% url 'register'%}" method='POST'>
 
                 {% csrf_token %}
-                {{form.as_p}}
+                {{form.first_name}}
+                <br>
+                {{form.last_name}}
+                <br>
+                {{form.phone_number}}
+                <br>
+                {{form.email}}
+                <br>
+                {{form.password}}
+                <br>
+                {{form.confirm_password}}
+                <br>
                 <button class="tp-in-btn w-100" type="submit">Döret</button>
             </form>
         </article><!-- card-body.// -->

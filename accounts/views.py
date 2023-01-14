@@ -65,7 +65,7 @@ def register(request):
             # to_email = email
             # send_email = EmailMessage(mail_subject, message, to=[to_email])
             # send_email.send()
-            messages.success(request, 'Регистрация прошла успешна')
+            messages.success(request, 'Hasaba alyş üstünlikli boldy')
             return redirect('login')
 
     else:
@@ -117,11 +117,11 @@ def login(request):
                 pass
 
             auth.login(request, user)
-            messages.success(request, 'Bы вошли в систему')
+            messages.success(request, 'Siz sistema girdiňiz')
 
             return redirect('home')
         else:
-            messages.error(request, 'Неверный логин или пароль')
+            messages.error(request, 'Login ýa-da Parol nädogry')
             return redirect('login')
 
 
@@ -137,7 +137,7 @@ def login(request):
 @login_required(login_url='login')
 def logout(request):
     auth.logout(request)
-    messages.success(request, 'Bы вышли из системы')
+    messages.success(request, 'Siz sistemadan çykdyňyz')
     return redirect('login')
 
 
@@ -270,7 +270,7 @@ def edit_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Ваш профиль был обновлен')
+            messages.success(request, 'Profiliňiz täzelendi')
             return redirect('edit_profile')
 
     else:
@@ -311,15 +311,15 @@ def changePassword(request):
                 user.set_password(new_password)
                 user.save()
 
-                messages.success(request, 'Ваш пароль был изминен')
+                messages.success(request, 'Parolyňyz üýtgedildi')
                 return redirect('changePassword')
 
             else:
                 messages.error(
-                    request, 'Пожалыста введите правильно оба паролья')
+                    request, 'Iki paroly dogry giriziň')
                 return redirect('changePassword')
         else:
-            messages.error(request, 'Пароль не совпадает')
+            messages.error(request, 'Parol gabat gelenok')
             return redirect('changePassword')
 
 

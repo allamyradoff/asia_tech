@@ -8,5 +8,6 @@ urlpatterns = [
     path('all_ads/', all_ads, name="all_ads"),
     path('ads/<int:id>/', ads, name="ads"),
     path('ad_detail/<int:id>/', ad_detail, name="ad_detail"),
+    path('edit_ad/<int:id>/', edit_ad, name="edit_ad"),
 
 ]

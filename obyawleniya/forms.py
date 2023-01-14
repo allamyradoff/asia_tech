@@ -43,14 +43,12 @@ class AdForm(forms.ModelForm):
         
     }))
 
-    image_2 = forms.FileField(widget=forms.FileInput(attrs={
-        'class': 'form-control',
-
-        
+    image_2 = forms.FileField(required=False, widget=forms.FileInput(attrs={
+        'class': 'form-control required'        
     }))
 
-    image_3 = forms.FileField(widget=forms.FileInput(attrs={
-        'class': 'form-control',
+    image_3 = forms.FileField(required=False, widget=forms.FileInput(attrs={
+        'class': 'form-control required',
 
         
     }))

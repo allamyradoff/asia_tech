@@ -167,10 +167,10 @@
                                         alt="logo"></a>
                                 {% endfor %}
                             </div>
-                            <div class="side-menu mr-">
+                            <!-- <div class="side-menu mr-">
                                 <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i
                                         class="fas fa-bars"></i></button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -238,16 +238,71 @@
             </div>
         </div>
     </div>
-    <div class="header__bottom d-none d-lg-block">
+    <div class="header__bottom">
         <div class="container">
-            <div class="box-items-inner pt-10 pb-10">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-3">
+                    <div class="cat__menu-wrapper side-border d-none d-lg-block">
+                        <div class="cat-toggle">
+                            <button type="button" class="cat-toggle-btn cat-toggle-btn-1"><i class="fal fa-bars"></i>
+                                Bildirişler</button>
+                            <div class="cat__menu">
+                                <nav id="mobile-menu" style="display: block;">
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'all_ads' %}">Ähli Harytlar <i
+                                                    class="far fa-angle-down"></i></a>
 
-                <div class="box-item">
-                    <a href=""><i class=""></i>
-                        Bildirisler
-                    </a>
+                                        </li>
+                                        {% for i in ads_cat %}
+                                        <li>
+                                            <a href="{% url 'ads' i.id %}">{{i.name}}<i
+                                                    class="far fa-angle-down"></i></a>
+
+                                        </li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-6 col-md-6 col-3">
+                    <div class="header__bottom-left d-flex d-xl-block align-items-center">
+                        <div class="side-menu d-lg-none mr-20">
+                            <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i
+                                    class="fas fa-bars"></i></button>
+                        </div>
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="">AsiaTek <i class="far fa-angle-down"></i></a>
+                                        <ul class="megamenu-1">
+                                            <li><a href="">Kategoriýalar</a>
+                                                <ul class="mega-item">
+                                                    <li><a href="{% url 'store'%}">Ähli harytlar</a></li>
+                                                    {% for i in category %}
+                                                    <li><a href="{% url 'store' i.id %}">{{i.name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-9">
+                    <div class="shopeing-text text-sm-end">
+                        <a href="{% url 'register' %}">
+                            <p style="font-size: 16px; color: #fcbe00;">Agza bol - 1 manat gazan !</p>
 
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -259,21 +314,22 @@
     <nav id="mobile-menu-2">
         <ul>
             <li>
-                <a href="index.html" class="active">AsiaTek  <i class="far fa-angle-down"></i></a>
+                <a href="index.html" class="active">AsiaTek <i class="far fa-angle-down"></i></a>
                 <ul class="megamenu-1">
                     <div class="sidebar__img mb-20">
                         <div class="row gx-2">
                             {% for i in category %}
+
                             <div class="col-3">
                                 <div class="sidebar__single-img hover-effect w-img mb-10">
-                                    <a class="popup-image" href="{% url 'store' i.id %}">
-                                        {% if i.image %}
-                                        <img src="{{i.image.url}}" alt="">
-                                        {% endif %}
+                                    {% if i.image %}
+                                    <img src="{{i.image.url}}" alt="">
+                                    {% endif %}
+                                    <a href="{% url 'store' i.id %}" style="color: #000; font-size: 10px;">{{i.name}}
                                     </a>
-                                    <a href="" style="color: #000; font-size: 10px;">{{i.name}} </a>
                                 </div>
                             </div>
+
                             {% endfor %}
                         </div>
                     </div>
@@ -286,7 +342,7 @@
                             {% for i in ads_cat %}
                             <div class="col-3">
                                 <div class="sidebar__single-img hover-effect w-img mb-10">
-                                    <a class="popup-image" href="{% url 'store' i.id %}">
+                                    <a class="popup-image" href="{% url 'ads' i.id %}">
                                         {% if i.image %}
                                         <img src="{{i.image.url}}" alt="">
                                         {% endif %}
@@ -300,9 +356,9 @@
                 </ul>
             </li>
             <li><a href="blog.html">Biz barada <i class="far fa-angle-down"></i></a>
-                
+
             </li>
-            
+
         </ul>
     </nav>
 </div>
@@ -318,8 +374,8 @@
                 </a>
             </div> -->
             <div class="offcanvas__search mb-25">
-                <form action="#">
-                    <input type="text" placeholder="Gözleg etmek üçin harydyň ady">
+                <form action="{% url 'search' %}">
+                    <input type="text" placeholder="Gözleg etmek üçin harydyň ady" name="keyword">
                     <button type="submit"><i class="far fa-search"></i></button>
                 </form>
             </div>

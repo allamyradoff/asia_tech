@@ -21,11 +21,25 @@ class Locations(models.Model):
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="locations/", null=True, blank=True)
 
+
+    def loc_count(self):
+        pc = Ad.objects.filter(locations=self.id)
+        count = pc.count()
+        return count
+
     def __str__(self):
         return self.title
 
 
 class Ad(models.Model):
+    LOC_CATEGORY = [
+        ('Mary', 'Mary'),
+        ('Ashgabat', 'Ashgabat'),
+        ('Lebap', 'Lebap'),
+        ('Ahal', 'Ahal'),
+        ('Balkan', 'Balkan'),
+        ('Dashoguz', 'Dashoguz'),
+    ]
     name = models.CharField(max_length=255)
     desc = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='ad_test/', blank=True, null=True)
@@ -37,8 +51,9 @@ class Ad(models.Model):
     credit = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
+    seen_count = models.IntegerField(blank=True, null=True, default=0)
     
-    locations = models.ForeignKey(Locations, on_delete=models.CASCADE, blank=True, null=True)
+    locations = models.CharField(max_length=150, choices=LOC_CATEGORY, default="Mary")
     cat_id = models.ForeignKey(CategoryAd, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
 

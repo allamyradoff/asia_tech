@@ -34,7 +34,7 @@
                                         <tr>
                                             <th scope="row"><a href="#">{{i.name}}</a> </th>
                                             <td>{{i.created_at}}</td>
-                                            <td><a href="#" style="margin-top:2%" class="tp-in-btn w-100"> Üýtgetmek </a>
+                                            <td><a href="{% url 'edit_ad' i.id %}" style="margin-top:2%" class="tp-in-btn w-100"> Üýtgetmek </a>
                                             </td>
                                         </tr>
                                         {% endfor %}

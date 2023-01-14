@@ -34,20 +34,96 @@
                             <form action="#">
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="" name="cat-item">
-                                    <a href="{% url 'all_ads' %}"><label>Ähli bildirişler
-                                            <span>({{ad_count}})</span></label></a>
+                                    <a href="{% url 'all_ads' %}"><label class="{% if '/all_ads/' in request.path %}label-active{% endif %}">Ähli bildirişler
+                                            <span style="color:#000">({{ad_count_all}})</span></label></a>
                                 </div>
                                 {% for i in cat_ad %}
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="{{i.id}}" name="cat-item">
-                                    <a href="{% url 'ads' i.id %}"><label>{{i.name}}
-                                            <span>({{i.ad_count}})</span></label></a>
+                                    <a href="{% url 'ads' i.id %}"><label class="{% if current_id == i.id %} label-active {% endif %}">{{i.name}}
+                                            <span style="color:#000">({{i.ad_count}})</span></label></a>
                                 </div>
                                 {% endfor %}
                             </form>
                         </div>
                     </div>
-                   
+                    <div class="product-widget mb-30">
+                        <h5 class="pt-title">Choose Color</h5>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Mary"><label>
+                                            Mary
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Ashgabat"><label class="{% if '//' in request.path %}label-active{% endif %}">
+                                            Ashgabat
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Lebap"><label class="{% if '//' in request.path %}label-active{% endif %}">
+                                            Lebap
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Balkan"><label class="{% if '//' in request.path %}label-active{% endif %}">
+                                            Balkan
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Dashoguz"><label class="{% if '//' in request.path %}label-active{% endif %}">
+                                            Dashoguz
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product__color mt-20">
+                            <a href="#">
+                                <div class="single-widget-category">
+                                    <input type="checkbox" id="" name="cat-item">
+                                    <a href="?loactionID=Ahal"><label class="{% if '//' in request.path %}label-active{% endif %}">
+                                            Ahal
+                                            
+                                        </label>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+
                 </div>
                 <div class="col-xl-9 col-lg-8">
                     <div class="shop-banner mb-30">
@@ -62,7 +138,9 @@
                     </div>
                     <div class="product-lists-top">
                         <div class="product__filter-wrap">
-                            
+                            {% if ad_counts %}
+                            <h4><a>Jemi: {{ad_counts}}</a></h4>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="tab-content" id="productGridTabContent">
@@ -75,14 +153,14 @@
                                         <div class="product__item product__item-d">
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
-                                                    <a href="#">
+                                                    <a href="{% url 'ad_detail' i.id %}">
                                                         <img src="{{i.image.url}}" alt="product">
                                                     </a>
                                                 </div>
                                             </div>
 
                                             <div class="product__content-3">
-                                                <h6><a href="{% url 'ad_detail' i.id %}">{{i.name}}</a></h6>
+                                                <h6><a href="{% url 'ad_detail' i.id %}">{{i.name |truncatewords:3 }}</a></h6>
 
                                                 <div class="price mb-10">
                                                     <span>{{i.price}}TMT</span>
@@ -103,9 +181,9 @@
                             <div class="col-xl-12">
                                 <div class="basic-pagination pt-30 pb-30">
                                     <nav>
-                                        {% if product.has_other_pages %}
+                                        {% if ad.has_other_pages %}
                                         <ul>
-                                        <!-- {% if product.has_previous %}
+                                            <!-- {% if product.has_previous %}
                                         <li><a 
                                                 href="?page={{product.previous_page_number}}">Преведущий</a></li>
                                         {% else %}
@@ -113,16 +191,16 @@
                                         {% endif %} -->
 
 
-                                        {% for i in product.paginator.page_range %}
-                                        {% if product.number == i %}
-                                        <li ><a  href="#">{{i}}</a></li>
-                                        {% else %}
-                                        <li ><a  href="?page={{i}}">{{i}}</a></li>
-                                        {% endif %}
-                                        {% endfor %}
+                                            {% for i in ad.paginator.page_range %}
+                                            {% if ad.number == i %}
+                                            <li><a href="#">{{i}}</a></li>
+                                            {% else %}
+                                            <li><a href="?page={{i}}">{{i}}</a></li>
+                                            {% endif %}
+                                            {% endfor %}
 
 
-                                        <!-- {% if product.has_next %}
+                                            <!-- {% if product.has_next %}
                                         <li ><a 
                                                 href="?page={{product.next_page_number}}">Следующий</a></li>
                                         {% else %}

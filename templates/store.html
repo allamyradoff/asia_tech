@@ -61,13 +61,13 @@
                             <form action="#">
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="" name="cat-item">
-                                    <a href="{% url 'store' %}"><label>Ähli harytlar
-                                            <span>({{category_count}})</span></label></a>
+                                    <a href="{% url 'store' %}"><label class="{% if '/store/' in request.path %}label-active{% endif %}">Ähli harytlar
+                                            <span style="color: #000;">({{category_count}})</span></label></a>
                                 </div>
                                 {% for i in category %}
                                 <div class="single-widget-category">
                                     <input type="checkbox" id="{{i.id}} name="cat-item">
-                                    <a href="{% url 'store' i.id %}"><label for="{{i.id}}">{{i.name}}
+                                    <a href="{% url 'store' i.id %}"><label class="{% if current_id == i.id %}label-active{% endif %}">{{i.name}}
                                             <span>({{i.prod_count}})</span></label></a>
                                 </div>
                                 {% endfor %}
@@ -78,7 +78,7 @@
                     <div class="product-widget mb-30">
                         <h5 class="pt-title">Filter By Price</h5>
                         <div class="price__slider mt-30">
-                           <input type="range" class="multi-range success" style="color:red;" value="{{FilterPrice}}" min="{{min_price.price__min}}" max="{{max_price.price__max}}" id="rangeInput" oninput="maxPrice.value=this.value" width="400px;"/>
+                           <input type="range" class="multi-range success" style="color:red;" value="{{FilterPrice}}" min="{{min_price.cource_price__min}}" max="{{max_price.cource_price__max}}" id="rangeInput" oninput="maxPrice.value=this.value" width="400px;"/>
                            <div>
                               <form action="" class="s-form mt-20" method="get">
                                  <b>TMT</b><input type="number" id="maxPrice" readonly="" name="FilterPrice" onkeyup="rangeInput.value=this.value" value={{FilterPrice}}{{minMaxPrice.price__min}}>
@@ -88,7 +88,7 @@
                         </div>
                      </div>
                      
-                    <div class="product-widget mb-30">
+                    <!-- <div class="product-widget mb-30">
                         <h5 class="pt-title">Choose Color</h5>
                         <div class="product__color mt-20">
                             <ul>
@@ -118,8 +118,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="product-widget mb-30">
+                    </div>-->
+                    <!-- <div class="product-widget mb-30">
                         <h5 class="pt-title">Choose Rating</h5>
                         <div class="widget-category-list mt-20">
                             <form action="#">
@@ -325,7 +325,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div>  -->
                 </div>
                 <div class="col-xl-9 col-lg-8">
                     <div class="shop-banner mb-30">
@@ -361,14 +361,14 @@
                                             </div>
                                             <div class="product__offer">
                                             
-                                                <span class="discount">{% if i.sale_percent%}-{{i.sale_percent}}%{% endif %}</span>
+                                                <!-- <span class="discount">{% if i.sale_percent%}- {{i.sale_percent}}%{% endif %}</span> -->
                                             
                                             </div>
                                             <div class="product__content-3">
-                                                <h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name}}</a></h6>
+                                                <h6><a href="{% url 'product_detail' i.id  i.category.id %}">{{i.name |truncatewords:3 }} </a></h6>
                                                 
                                                 <div class="price mb-10">
-                                                    <span style="color:#36c069 ;">{% if i.sale_price %}{{i.sale_price}} TMT <del style="color:red;">{%endif%}{{i.price}} TMT</del></span>
+                                                    <span style="color:#36c069 ;"> {% if i.sale_price %} {{i.sale_price}} TMT{% endif %}<del style="color:red;">{{i.cource_price}} TMT</del> </span>
                                                 </div>
                                             </div>
                                             <div class="product__add-cart-s text-center">

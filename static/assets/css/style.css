@@ -4612,6 +4612,12 @@ only screen and (min-width: 1400px) and (max-width: 1600px) {
   border-radius: 50%;
 }
 
+.label-active{
+  background-color:#fcbe00 !important;
+  border-radius: 35px;
+  color: #fff;
+}
+
 .single-widget-rating label::after {
   position: absolute;
   left: 5px;

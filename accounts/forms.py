@@ -6,33 +6,33 @@ from .models import *
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Напишите пароль',
+        'placeholder': 'Paroly giriziň',
         'class': 'form-control'
     }))
 
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Подвердите пароль',
+        'placeholder': 'Paroly tassyklaň',
         'class': 'form-control'
 
     }))
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите имя',
+        'placeholder': 'Adynyň',
         'class': 'form-control'
     }))
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите фамилаю',
+        'placeholder': 'Familiýaňyz',
         'class': 'form-control'
     }))
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите телефон',
+        'placeholder': 'Telefon belgiňiz',
         'class': 'form-control'
     }))
 
     email = forms.EmailField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите Email',
+        'placeholder': 'Email poçtaňyz',
         'class': 'form-control'
     }))
 
@@ -47,23 +47,23 @@ class RegisterForm(forms.ModelForm):
         confirm_password = cleaned_data.get('confirm_password')
 
         if password != confirm_password:
-            raise forms.ValidationError("Введите оба паролья правильно")
+            raise forms.ValidationError("Iki parolam dogry giriziň")
 
 
 class UserForm(forms.ModelForm):
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите имя',
+        'placeholder': 'Adyňyz',
         'class': 'form-control'
     }))
 
     last_name = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите фамилаю',
+        'placeholder': 'Fimiliýaňyz',
         'class': 'form-control'
     }))
 
     phone_number = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите телефон',
+        'placeholder': 'Telefon belgiňiz',
         'class': 'form-control'
     }))
 
@@ -76,22 +76,22 @@ class UserProfileForm(forms.ModelForm):
 
 
     address_line_1 = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите имя',
+        'placeholder': 'Adyňyz',
         'class': 'form-control'
     }))
 
     address_line_2 = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите фамилаю',
+        'placeholder': 'Fimiliýaňyz',
         'class': 'form-control'
     }))
 
     city = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите телефон',
+        'placeholder': 'Telefon belgiňiz',
         'class': 'form-control'
     }))
 
     state = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Напишите фамилаю',
+        'placeholder': 'Welaýatyňyz',
         'class': 'form-control'
     }))
 

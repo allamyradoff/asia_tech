@@ -10,7 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('name', 'price', 'stock', 'created_date', 'is_active', 'is_sale', 'category')
+    list_display = ('name', 'price', 'stock', 'created_date', 'is_active', 'is_sale', 'category', 'cource_price')
+    list_editable = ('cource_price',)
 
 
 class VariationAdmin(admin.ModelAdmin):
