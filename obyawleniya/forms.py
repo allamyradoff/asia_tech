@@ -26,13 +26,13 @@ class AdForm(forms.ModelForm):
 
     }))
 
-    exchange = forms.CharField(widget=forms.CheckboxInput(attrs={
-        'class': 'form-check-input',
+    exchange = forms.CharField(required=False, widget=forms.CheckboxInput(attrs={
+        'class': 'form-check-input required',
         
     }))
 
-    credit = forms.CharField(widget=forms.CheckboxInput(attrs={
-        'class': 'form-check-input',
+    credit = forms.CharField(required=False, widget=forms.CheckboxInput(attrs={
+        'class': 'form-check-input required',
         
         
     }))

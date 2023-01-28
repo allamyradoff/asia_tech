@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import Account
+from PIL import Image
 
 class CategoryAd(models.Model):
     name = models.CharField(max_length=255)
@@ -52,10 +53,21 @@ class Ad(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     seen_count = models.IntegerField(blank=True, null=True, default=0)
+    vip_ad = models.BooleanField(default=False)
+    
     
     locations = models.CharField(max_length=150, choices=LOC_CATEGORY, default="Mary")
     cat_id = models.ForeignKey(CategoryAd, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
+
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
     def __str__(self):

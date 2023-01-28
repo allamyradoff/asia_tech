@@ -191,22 +191,22 @@
 
                     <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
                         <div class="header-action">
-                            {% if user.id is None %}
-                            <div class="block-userlink">
-                                <a class="icon-link icon-link-2" href="{% url 'register' %}">
-                                    <i class="flaticon-user"></i>
-                                    <span class="text">
-                                        <span class="sub"> Hoş geldiňiz!</span>
-                                    </span>
-                                </a>
-                            </div>
-                            {% else %}
+                            {% if user.is_authenticated %}
                             <div class="block-userlink">
                                 <a class="icon-link icon-link-2" href="{% url 'dashboard' %}">
                                     <i class="flaticon-user"></i>
                                     <span class="text">
                                         <span class="sub">{{user.first_name}} </span>
                                         Meniň profilim </span>
+                                </a>
+                            </div>
+                            {% else %}
+                            <div class="block-userlink">
+                                <a class="icon-link icon-link-2" href="{% url 'register' %}">
+                                    <i class="flaticon-user"></i>
+                                    <span class="text">
+                                        <span class="sub"> Hoş geldiňiz!</span>
+                                    </span>
                                 </a>
                             </div>
                             {% endif %}
@@ -298,7 +298,7 @@
                 <div class="col-lg-3 col-md-6 col-9">
                     <div class="shopeing-text text-sm-end">
                         <a href="{% url 'register' %}">
-                            <p style="font-size: 16px; color: #fcbe00;">Agza bol - 1 manat gazan !</p>
+                            <!-- <p style="font-size: 16px; color: #fcbe00;">Agza bol - 1 manat gazan !</p> -->
 
                         </a>
                     </div>
@@ -314,48 +314,13 @@
     <nav id="mobile-menu-2">
         <ul>
             <li>
-                <a href="index.html" class="active">AsiaTek <i class="far fa-angle-down"></i></a>
-                <ul class="megamenu-1">
-                    <div class="sidebar__img mb-20">
-                        <div class="row gx-2">
-                            {% for i in category %}
+                <a href="{% url 'store' %}" class="active">AsiaTek </a>
 
-                            <div class="col-3">
-                                <div class="sidebar__single-img hover-effect w-img mb-10">
-                                    {% if i.image %}
-                                    <img src="{{i.image.url}}" alt="">
-                                    {% endif %}
-                                    <a href="{% url 'store' i.id %}" style="color: #000; font-size: 10px;">{{i.name}}
-                                    </a>
-                                </div>
-                            </div>
+            </li>
+            <li><a href="{% url 'all_ads' %}">Bildirişler </a>
 
-                            {% endfor %}
-                        </div>
-                    </div>
-                </ul>
             </li>
-            <li><a href="shop.html">Bildirişler <i class="far fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <div class="sidebar__img mb-20">
-                        <div class="row gx-2">
-                            {% for i in ads_cat %}
-                            <div class="col-3">
-                                <div class="sidebar__single-img hover-effect w-img mb-10">
-                                    <a class="popup-image" href="{% url 'ads' i.id %}">
-                                        {% if i.image %}
-                                        <img src="{{i.image.url}}" alt="">
-                                        {% endif %}
-                                    </a>
-                                    <a href="" style="color: #000; font-size: 10px;">{{i.name}} </a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </ul>
-            </li>
-            <li><a href="blog.html">Biz barada <i class="far fa-angle-down"></i></a>
+            <li><a href="#">Biz barada <i class="far fa-angle-down"></i></a>
 
             </li>
 

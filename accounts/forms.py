@@ -80,25 +80,18 @@ class UserProfileForm(forms.ModelForm):
         'class': 'form-control'
     }))
 
-    address_line_2 = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Fimiliýaňyz',
-        'class': 'form-control'
-    }))
+    
 
-    city = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Telefon belgiňiz',
-        'class': 'form-control'
-    }))
+    
 
     state = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Welaýatyňyz',
         'class': 'form-control'
     }))
 
-    profile_avatar = forms.ImageField(required=False, error_messages= {'invalid':("image file only")}, widget=forms.FileInput)
+    profile_avatar = forms.ImageField(required=True, error_messages= {'invalid':("image file only")}, widget=forms.FileInput)
 
 
     class Meta:
         model=UserProfile
-        fields=('address_line_1', 'address_line_2',
-                'city', 'state', 'profile_avatar')
+        fields=('address_line_1', 'state', 'profile_avatar')

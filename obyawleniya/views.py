@@ -80,7 +80,7 @@ def edit_ad(request, id):
 
 
 def all_ads(request):
-    ad = Ad.objects.all()
+    ad = Ad.objects.all().order_by('-created_at')
     ad_all = Ad.objects.all()
     ad_count_all = ad_all.count()
     ad_count = ad.count()
@@ -99,9 +99,9 @@ def all_ads(request):
     LocationID = request.GET.get('loactionID')
 
     if LocationID:
-        ad = Ad.objects.filter(locations=LocationID)
+        ad = Ad.objects.filter(locations=LocationID).order_by('-created_at')
     else:
-        ad = Ad.objects.all()
+        ad = Ad.objects.all().order_by('-created_at')
 
     paginator = Paginator(ad, 8)
     page = request.GET.get('page')
@@ -125,10 +125,11 @@ def all_ads(request):
 
 
 def ads(request, id):
-    ad_all = Ad.objects.all()
+    ad_all = Ad.objects.all().order_by('-created_at')
     ad_count_all = ad_all.count()
     category = Category.objects.all()
     ad = Ad.objects.filter(cat_id=id)
+    print()
     ad_count = ad.count()
     logo = Logo.objects.all()
     cat_ad = CategoryAd.objects.all()
@@ -139,10 +140,10 @@ def ads(request, id):
     LocationID = request.GET.get('loactionID')
 
     if LocationID:
-        ad = Ad.objects.filter(locations=LocationID)
+        ad = Ad.objects.filter(locations=LocationID).order_by('-created_at')
         ad = ad.filter(cat_id=id)
     else:
-        ad = Ad.objects.filter(cat_id=id)
+        ad = Ad.objects.filter(cat_id=id).order_by('-created_at')
 
     if request.user.is_authenticated:
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
@@ -167,7 +168,6 @@ def ads(request, id):
         "current_id": current_id,
         "location_id":location_id,
         'category':category
-
     }
     return render(request, 'ad/ads.html', context)
 
@@ -194,7 +194,12 @@ def ad_detail(request, id):
         'ads_cat':ads_cat,
         'logo':logo,
         'category':category
-
     }
     return render(request, 'ad/ad_detail.html', context)
+
+
+def delete_ad(request, id):
+    ad = Ad.objects.get(id=id)
+    ad.delete()
+    return redirect(my_ad)
 

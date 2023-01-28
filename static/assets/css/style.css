@@ -2734,6 +2734,9 @@ only screen and (min-width: 576px) and (max-width: 767px),
   .slider-content {
     text-align: left;
   }
+  .slider_test {
+    display: none;
+  }
 }
 
 .slider-content .slider_text {
@@ -2779,6 +2782,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
   .main-slider-paginations {
     display: none;
   }
+  
 }
 
 .main-slider-paginations .swiper-pagination-bullet {

@@ -12,7 +12,7 @@
                     <div class="breadcrumb__wrapper">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Baş sahypa</a></li>
+                                <li class="breadcrumb-item"><a href="/">Baş sahypa</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Dükan</li>
                             </ol>
                         </nav>
@@ -94,6 +94,7 @@
                         <div class="price mb-10">
                             <span>{{ad.price}}TMT</span>
                         </div>
+                        <span style="color: #000;" >Telefon belgisi: <a href="Tel:{{ad.phone_number}}" style="color: #fcbe00;">{{ad.phone_number}}</a> </span>
 
                         
                         <div class="cart-option mb-15">
@@ -105,11 +106,19 @@
                                 
                                 <span class="posted_in">
                                     <span class="title">Kategoriýa:</span>
-                                    <a href="#">{{ad.cat_id.name}}</a>
+                                    <a >{{ad.cat_id.name}}</a>
                                 </span>
                                 <span class="posted_in">
-                                    <span class="title">prosmotr:</span>
-                                    <a href="#">{{ad.seen_count}}</a>
+                                    <span class="title">Görüldi:</span>
+                                    <a >{{ad.seen_count}}</a>
+                                </span>
+                                <span class="posted_in">
+                                    <span class="title">Ýerleşýän ýeri:</span>
+                                    <a >{{ad.locations}}</a>
+                                </span>
+                                <span class="posted_in">
+                                    <span class="title">Goýlan wagty:</span>
+                                    <a >{{ad.created_at}}</a>
                                 </span>
 
                             </div>

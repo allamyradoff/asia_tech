@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from PIL import Image
 
 
 class MyAccountManager(BaseUserManager):
@@ -59,6 +60,11 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.phone_number
 
+    def get_all_permissions(user=None):
+        if user.is_superadmin:
+            
+            return set()
+
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
@@ -66,19 +72,24 @@ class Account(AbstractBaseUser):
         return True
 
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=100, blank=True)
-    address_line_2 = models.CharField(max_length=100, blank=True)
-    profile_avatar = models.ImageField(upload_to='userprofile/', blank=True)
-    city = models.CharField(max_length=20, blank=True)
+    profile_avatar = models.ImageField(
+        upload_to='userprofile/', blank=True, null=True)
     state = models.CharField(max_length=20, blank=True)
-    
 
     def __str__(self):
         return self.user.first_name
 
+    def save(self):
+        super().save()
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
     def full_address(self):
-        return f'{self.address_line_1} {self.address_line_2}'
+        return f'{self.address_line_1}'

@@ -8,7 +8,7 @@ class OrderProductInline(admin.TabularInline):
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
-        'order_number', 'first_name', 'phone', 'email', 'city', 'order_total', 'status', 'created_at'
+        'order_number', 'first_name', 'phone', 'email', 'state', 'order_total', 'status', 'created_at'
     ]
     inlines = [OrderProductInline]
 

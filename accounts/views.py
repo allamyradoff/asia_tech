@@ -6,7 +6,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -51,9 +51,21 @@ def register(request):
             )
             user.phone_number = phone_number
             user.save()
+            
+
+            user = authenticate(phone_number=phone_number, password=password)
+            if user is not None:          
+
+                auth.login(request, user)
+                messages.success(request, 'Siz sistema girdiňiz')
+
+                return redirect('home')
+            else:
+                messages.error(request, 'Login ýa-da Parol nädogry')
+                return redirect('login')
 
             # активация аккаунта
-
+            
             # current_site = get_current_site(request)
             # mail_subject = 'Пожалыста активирвуйти ваш аккаунт'
             # message = render_to_string('accounts/account_verification_email.html', {
@@ -65,8 +77,9 @@ def register(request):
             # to_email = email
             # send_email = EmailMessage(mail_subject, message, to=[to_email])
             # send_email.send()
+
             messages.success(request, 'Hasaba alyş üstünlikli boldy')
-            return redirect('login')
+            return redirect('store')
 
     else:
         form = RegisterForm()
@@ -223,8 +236,6 @@ def register_profile(request):
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             address_line_1 = form.cleaned_data['address_line_1']
-            address_line_2 = form.cleaned_data['address_line_2']
-            city = form.cleaned_data['city']
             state = form.cleaned_data['state']
             profile_avatar = request.FILES['profile_avatar']
             # user_name = form.cleaned_data['user_name']
@@ -232,8 +243,6 @@ def register_profile(request):
             form = UserProfile.objects.create(
                 user=request.user,
                 address_line_1=address_line_1,
-                address_line_2=address_line_2,
-                city=city,
                 state=state,
                 profile_avatar=profile_avatar
             )
@@ -241,7 +250,7 @@ def register_profile(request):
             return redirect('dashboard')
 
         else:
-            return HttpResponse('ishlemedi')
+            return HttpResponse('Profil suraty girizmegiňizi haýyş edýäris')
 
     context = {
         'logo':logo,

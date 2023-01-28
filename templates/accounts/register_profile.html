@@ -17,7 +17,7 @@
                         <form action="{% url 'register_profile' %}" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <label for="">Profil suraty</label>
-                            <input type="file" name="profile_avatar" id="">
+                            <input type="file" name="profile_avatar" >
                             <label for="">Telefon belgisi</label>
                             <input type="text" name="user_name" value="{{request.user}}" id="">
                             <div class="form-group">
@@ -25,17 +25,9 @@
                                 <input type="text" name="address_line_1" id="">
 
                             </div>
-                            <div class="form-group">
-                                <label for=""> Salgysy (ätiýaçlyk)</label>
-                                <input type="text" name="address_line_2" id="">
-
-                            </div>
+                            
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label>Sebit</label>
-                                    <input type="text" name="city" id="">
-
-                                </div>
+                               
                                 <div class="form-group col-md-12">
                                     <label>Şäher</label>
                                     <input type="text" name="state" id="">
