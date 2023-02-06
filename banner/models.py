@@ -1,7 +1,7 @@
 from pyexpat import model
 from django.db import models
 from product.models import *
-
+from obyawleniya.models import CategoryAd
 
 class Slider(models.Model):
     hot_detail = models.CharField(max_length=50, blank=True, null=True)
@@ -9,6 +9,7 @@ class Slider(models.Model):
     slider_mini_title = models.CharField(max_length=100, blank=True, null=True)
     slider_image_1 = models.ImageField(
         upload_to="slider_banner/", blank=True, null=True)
+
 
     # lilte_banner_1 = models.ImageField(upload_to="litle_banner/", blank=True, null=True)
     # lilte_banner_2 = models.ImageField(upload_to="litle_banner/", blank=True, null=True)
@@ -19,14 +20,18 @@ class Slider(models.Model):
 
 
 class MiniSlider(models.Model):
+    mobile_banner = models.ImageField(upload_to='mobile_banner/', blank=True, null=True)
+    
     lilte_banner_1 = models.ImageField(
         upload_to="litle_banner/", blank=True, null=True)
     lilte_banner_2 = models.ImageField(
         upload_to="litle_banner/", blank=True, null=True)
     slider_title = models.CharField(max_length=100, blank=True, null=True)
     slider_mini_title = models.CharField(max_length=100, blank=True, null=True)
+    
     big_banner_2 = models.ImageField(
         upload_to="big_banner/", blank=True, null=True)
+
 
     def __str__(self):
         return self.slider_title
@@ -54,6 +59,7 @@ class VipAd(models.Model):
     title_1 = models.CharField(max_length=50, blank=True, null=True)
     image_1 = models.ImageField(
         upload_to="litle_banner/", blank=True, null=True)
+    link = models.ForeignKey(CategoryAd, on_delete=models.PROTECT, blank=True, null=True)
     title_2 = models.CharField(max_length=50, blank=True, null=True)
     image_2 = models.ImageField(
         upload_to="litle_banner/", blank=True, null=True)

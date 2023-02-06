@@ -9,10 +9,10 @@ from obyawleniya.models import CategoryAd
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from banner.models import StoreBanner
 from product.models import Category
+from django.contrib.auth.decorators import login_required
 
 
-
-
+@login_required(login_url='login')
 def added_ad_product(request):
     cat = CategoryAd.objects.all()
     logo = Logo.objects.all()
@@ -22,16 +22,19 @@ def added_ad_product(request):
         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
     else:
         cart_items = 0
-
-    if request.method == 'POST':
-        form = AdForm(request.POST, request.FILES)
-        if form.is_valid():
-            form = form.save()
-            form.user = request.user
-            form.save()
-            return redirect('my_ad')
-    else:
-        form = AdForm()
+    try: 
+        if request.method == 'POST':
+            form = AdForm(request.POST, request.FILES)
+            if form.is_valid():
+                form = form.save()
+                form.user = request.user
+                form.save()
+                return redirect('my_ad')
+        else:
+            form = AdForm()
+    except:
+        return HttpResponse('suraty girizmegiňizi haýyş edýäris')
+        
     return render(request, 'ad/ad-form.html', {'form': form, 'cat':cat, 'logo':logo, 'cart_items': cart_items, 'ads_cat':ads_cat, 'category':category})
 
 

@@ -27,13 +27,30 @@
 									
 								</div>
 							</div>
+							
 							{% endfor %}
+
+
 							
 							
 							<div class="main-slider-paginations"></div>
 						</div>
+
 					</div>
 				</div>
+				{% for i in mini_slider %}
+					<div class="col-xl-12 col-lg-12 col-sm-6 mobile">
+						<div class="banner__item p-relative w-img mb-30">
+							<div class="banner__img banner__img-2 b-radius-2">
+								<a ><img src="{{i.mobile_banner.url}}"
+										alt=""></a>
+							</div>
+							<div class="banner__content">
+								
+							</div>
+						</div>
+					</div>
+					{% endfor %}
 				<div class="col-xl-6">
 					<div class="row">
 						{% for i in mini_slider %}
@@ -302,30 +319,30 @@
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="banner__item p-relative w-img mb-30">
 						<div class="banner__img b-radius-2">
-							<a href="product-details.html"><img src="{{i.image_1.url}}" alt=""></a>
+							<a href="{% url 'ads' i.link.id %}"><img src="{{i.image_1.url}}" alt=""></a>
 						</div>
 						<div class="banner__content">
-							<h6><a href="product-details.html">{{i.title_1}}</a></h6>
+							<h6><a href="{% url 'ads' i.link.id %}">{{i.title_1}}</a></h6>
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="banner__item p-relative mb-30 w-img">
 						<div class="banner__img b-radius-2">
-							<a href="product-details.html"><img src="{{i.image_2.url}}" alt=""></a>
+							<a href="{% url 'added_ad_product' %}"><img src="{{i.image_2.url}}" alt=""></a>
 						</div>
 						<div class="banner__content">
-							<h6><a href="product-details.html">{{i.title_2}}</a></h6>
+							<h6><a href="{% url 'added_ad_product' %}">{{i.title_2}}</a></h6>
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-4 col-lg-4 col-md-6">
 					<div class="banner__item p-relative mb-30 w-img">
 						<div class="banner__img b-radius-2">
-							<a href="product-details.html"><img src="{{i.image_3.url}}" alt=""></a>
+							<a href="{% url 'all_ads' %}"><img src="{{i.image_3.url}}" alt=""></a>
 						</div>
 						<div class="banner__content">
-							<h6><a href="product-details.html">{{i.title_3}}</a></h6>
+							<h6><a href="{% url 'all_ads' %}">{{i.title_3}}</a></h6>
 						</div>
 					</div>
 				</div>

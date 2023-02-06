@@ -404,7 +404,7 @@
 
                                         {% for i in product.paginator.page_range %}
                                         {% if product.number == i %}
-                                        <li ><a  href="#">{{i}}</a></li>
+                                        <li><a class="page-item active"  href="#">{{i}}</a></li>
                                         {% else %}
                                         <li ><a  href="?page={{i}}">{{i}}</a></li>
                                         {% endif %}

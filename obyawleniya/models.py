@@ -1,6 +1,8 @@
 from django.db import models
 from accounts.models import Account
 from PIL import Image
+from django_resized import ResizedImageField
+
 
 class CategoryAd(models.Model):
     name = models.CharField(max_length=255)
@@ -43,9 +45,10 @@ class Ad(models.Model):
     ]
     name = models.CharField(max_length=255)
     desc = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='ad_test/', blank=True, null=True)
-    image_2 = models.ImageField(upload_to='ad_test/', blank=True, null=True)
-    image_3 = models.ImageField(upload_to='ad_test/', blank=True, null=True)
+    image_prev = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_imgs/", blank=True, null=True)
+    image = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_imgs/", blank=True, null=True)
+    image_2 = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_imgs/", blank=True, null=True)
+    image_3 = ResizedImageField(force_format="WEBP", quality=75, upload_to="post_imgs/", blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     exchange = models.BooleanField(default=False)
@@ -62,12 +65,33 @@ class Ad(models.Model):
 
     def save(self):
         super().save()
-        img = Image.open(self.image.path)
+        img = Image.open(self.image_prev.path)
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.image_prev.path)
+
+
+    # def save(self):
+
+    #     if not self.id and not self.image_prev:
+    #         return            
+
+    #     super(Ad, self).save()
+
+    #     image = Image.open(self.image_prev)
+    #     (width, height) = image.size
+
+    #     "Max width and height 800"        
+    #     if (800 / width < 800 / height):
+    #         factor = 800 / height
+    #     else:
+    #         factor = 800 / width
+
+    #     size = ( width / factor, height / factor)
+    #     image.resize(size, Image.ANTIALIAS)
+    #     image.save(self.image_prev.path)
 
 
     def __str__(self):

@@ -37,6 +37,12 @@ class AdForm(forms.ModelForm):
         
     }))
 
+    image_prev = forms.FileField(widget=forms.FileInput(attrs={
+        'class': 'form-control',
+
+        
+    }))
+
     image = forms.FileField(widget=forms.FileInput(attrs={
         'class': 'form-control',
 

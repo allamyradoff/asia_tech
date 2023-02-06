@@ -154,13 +154,13 @@
                                             <div class="product__thumb fix">
                                                 <div class="product-image w-img">
                                                     <a href="{% url 'ad_detail' i.id %}">
-                                                        <img src="{{i.image.url}}" alt="product">
+                                                        <img src="{{i.image_prev.url }}" style="height: 250px; width: 100%;" alt="product">
                                                     </a>
                                                 </div>
                                             </div>
 
                                             <div class="product__content-3">
-                                                <h6><a href="{% url 'ad_detail' i.id %}">{{i.name |truncatewords:3 }}</a></h6>
+                                                <h6><a href="{% url 'ad_detail' i.id %}">{{i.name |truncatewords:2 }}</a></h6>
 
                                                 <div class="price mb-10">
                                                     <span>{{i.price}}TMT</span>

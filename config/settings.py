@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 
     'django.contrib.sitemaps',
+    "watermarker",
 
 
     'product',
@@ -157,3 +158,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'allamyradoffyunus@gmail.com'
 EMAIL_HOST_PASSWORD = 'xeithztzbviwztzu'
 EMAIL_USE_TLS = True
+
+
+WATERMARKING_QUALITY = 85
+WATERMARK_OBSCURE_ORIGINAL = False
