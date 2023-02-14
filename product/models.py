@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Account
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField 
 
 
 class Category(models.Model):
@@ -30,7 +31,7 @@ class Cours(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    desc = models.TextField(max_length=255, blank=True, null=True)
+    desc = RichTextUploadingField('Haryt barada giňişleýin', null=True, blank=True)
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     image_1 = models.ImageField(upload_to='products/', blank=True, null=True)
     image_2 = models.ImageField(upload_to='products/', blank=True, null=True)

@@ -5,6 +5,7 @@ from obyawleniya.models import CategoryAd
 
 class Slider(models.Model):
     hot_detail = models.CharField(max_length=50, blank=True, null=True)
+    link = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     slider_title = models.CharField(max_length=100, blank=True, null=True)
     slider_mini_title = models.CharField(max_length=100, blank=True, null=True)
     slider_image_1 = models.ImageField(
@@ -21,6 +22,7 @@ class Slider(models.Model):
 
 class MiniSlider(models.Model):
     mobile_banner = models.ImageField(upload_to='mobile_banner/', blank=True, null=True)
+    link_mobile_banner = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     
     lilte_banner_1 = models.ImageField(
         upload_to="litle_banner/", blank=True, null=True)

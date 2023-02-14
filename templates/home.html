@@ -14,19 +14,25 @@
 					<div class="swiper-container slider__active pb-30">
 						<div class="slider-wrapper swiper-wrapper">
 							{% for i in slider %}
-							<div class="single-slider swiper-slide b-radius-2 slider-height-3 d-flex align-items-center"
+							<a href="{% url 'store' i.link.id %}">
+
+								<div class="single-slider swiper-slide b-radius-2 slider-height-3 d-flex align-items-center"
 								data-background="{{i.slider_image_1.url}}">
-								<div class="slider-content slider-content-2">
-									<div class="slider-top-btn mb-20" data-animation="fadeInLeft" data-delay="1.5s"
+									<div class="slider-content slider-content-2">
+										<div class="slider-top-btn mb-20" data-animation="fadeInLeft" data-delay="1.5s"
 										style="animation-delay: 1.5s;">
-										<a href="" class="st-btn b-radius">{{i.hot_detail}}</a>
+										<a href="{% url 'store' i.link.id %}" class="st-btn b-radius">{{i.hot_detail}}</a>
 									</div>
-									<h2 data-animation="fadeInLeft" data-delay="1.7s" class="pt-15 slider-title pb-5">
-										{{i.slider_title}}</h2>
-									<p class="pr-20 slider_text" data-animation="fadeInLeft" data-delay="1.9s">{{i.slider_mini_title}}</p>
-									
+									<a href="{% url 'store' i.link.id %}">
+
+										<h2 data-animation="fadeInLeft" data-delay="1.7s" class="pt-15 slider-title pb-5">
+											{{i.slider_title}}</h2>
+											<p class="pr-20 slider_text" data-animation="fadeInLeft" data-delay="1.9s">{{i.slider_mini_title}}</p>
+											
+										</div>
+									</a>
 								</div>
-							</div>
+							</a>
 							
 							{% endfor %}
 
@@ -39,18 +45,20 @@
 					</div>
 				</div>
 				{% for i in mini_slider %}
+				
 					<div class="col-xl-12 col-lg-12 col-sm-6 mobile">
 						<div class="banner__item p-relative w-img mb-30">
 							<div class="banner__img banner__img-2 b-radius-2">
-								<a ><img src="{{i.mobile_banner.url}}"
+								<a href="{% url 'store' i.link_mobile_banner.id %}"><img src="{{i.mobile_banner.url}}"
 										alt=""></a>
 							</div>
 							<div class="banner__content">
 								
 							</div>
 						</div>
+
 					</div>
-					{% endfor %}
+				{% endfor %}
 				<div class="col-xl-6">
 					<div class="row">
 						{% for i in mini_slider %}
